@@ -2,7 +2,12 @@
 
 import React, { useEffect, useState } from "react";
 import { Box, Paper, TextField, MenuItem, Typography, Checkbox, FormControlLabel } from "@mui/material";
+import { useRouter } from "next/navigation";
+import { registerUser } from "../../app/api/Actions/user.action";
 import { styled } from "@mui/system";
+import { toast } from "react-toastify"; 
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 // Background Styling
 const Background = styled("div")({
@@ -87,6 +92,7 @@ const StyledButton = styled("button")({
 });
 
 const SignUp = () => {
+  const router = useRouter();
   const [countries, setCountries] = useState([]);
   const [formData, setFormData] = useState({
     firstName: "",
@@ -123,25 +129,29 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log('formData:', formData);
 
     try {
-      const response = await fetch("/api/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await response.json();
-      if (response.ok) {
-        alert(data.message); // Handle successful registration
+      const response = await registerUser(formData);
+      if (response.status) {
+        toast.success("SignUp successful!");
+        console.log(
+          "Signup successful! You will be redirected to the sign-in page."
+        );
+        setTimeout(() => {
+          router.push("/login");
+        }, 4000); // Delay to allow toast to be visible
       } else {
-        alert(data.message); // Handle error message from API
+        // Only show the toast if there’s an error message
+        if (response.error) {
+          toast.error("SignUp Failed!");
+          console.error(response.error);
+        }
       }
-    } catch (error) {
-      console.error("Error during sign-up:", error);
-      alert("An error occurred. Please try again.");
+    } catch (err) {
+      toast.error("Registration error:", err);
+      console.error("Registration error:", err);
+      console.error("An error occurred during registration.");
     }
   };
 
@@ -257,6 +267,7 @@ const SignUp = () => {
           </Box>
         </form>
       </FormContainer>
+            <ToastContainer />
     </Background>
   );
 };

@@ -1,34 +1,52 @@
-"use client"
+"use client";
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react"; 
+import { toast } from "react-toastify"; 
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 import "./login.css";
 
+
 const LoginPage = () => {
-  // State for input fields
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
 
   // State for validation errors
   const [errors, setErrors] = useState({});
+  const router = useRouter();
+
+  // Handle input changes
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = {};
 
     // Email validation
-    if (!email) {
+    if (!formData.email) {
       validationErrors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(email)) {
-      validationErrors.email = "Email is invalid";
+    } else if (!/^[^\d]\S+@\S+\.\S+$/.test(formData.email)) {
+      validationErrors.email = "Email is invalid or starts with a number";
     }
 
     // Password validation
     const passwordRegex =
       /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
 
-    if (!password) {
+    if (!formData.password) {
       validationErrors.password = "Password is required";
-    } else if (!passwordRegex.test(password)) {
+    } else if (!passwordRegex.test(formData.password)) {
       validationErrors.password =
         "Password must have at least 6 characters, one uppercase letter, one lowercase letter, one number, and one special character.";
     }
@@ -36,10 +54,29 @@ const LoginPage = () => {
     // Set validation errors
     setErrors(validationErrors);
 
-    // If no errors, you can proceed
+    // If no errors, proceed to sign-in logic
     if (Object.keys(validationErrors).length === 0) {
-      alert("Form submitted successfully!");
-      // Further form submission logic (e.g., API call)
+      try {
+        const res = await signIn("credentials", {
+          redirect: false,
+          email: formData.email,
+          password: formData.password,
+        });
+
+        if (res?.ok) {
+          toast.success("Login successful!");
+          console.log("Login successful!");
+          setTimeout(() => {
+            router.replace("/dashboard");
+          }, 2000);
+        } else {
+          toast.error("Input Correct Credentials.");
+          console.log("Input Correct Credentials.");
+        }
+      } catch (error) {
+        toast.error("An unexpected error occurred.");
+        console.log("An unexpected error occurred.");
+      }
     }
   };
 
@@ -58,20 +95,22 @@ const LoginPage = () => {
           {/* Email Input */}
           <input
             type="email"
+            name="email"
             placeholder="Email"
             className="input-field"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={formData.email}
+            onChange={handleChange}
           />
           {errors.email && <span className="error-message">{errors.email}</span>}
 
           {/* Password Input */}
           <input
             type="password"
+            name="password"
             placeholder="Password"
             className="input-field"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={formData.password}
+            onChange={handleChange}
           />
           {errors.password && (
             <span className="error-message">{errors.password}</span>
@@ -102,6 +141,7 @@ const LoginPage = () => {
         </p>
         <button className="signup-btn">Sign Up</button>
       </div>
+      <ToastContainer />
     </div>
   );
 };
