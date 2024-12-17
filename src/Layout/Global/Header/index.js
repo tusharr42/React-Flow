@@ -14,7 +14,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { useRouter } from "next/navigation";
 import AdbIcon from "@mui/icons-material/Adb";
 
-const pages = ["Home", "FAQ", "Register now"];
+const pages = ["Login"];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -22,7 +22,7 @@ function ResponsiveAppBar() {
   const router = useRouter();
 
   const handleRedirect = () => {
-    router.push("/signup");
+    router.push("/login");
   };
 
   const handleOpenNavMenu = (event) => {
@@ -56,11 +56,11 @@ function ResponsiveAppBar() {
             component="a"
             href="#app-bar-with-responsive-menu"
             sx={{
-              mr: 2,
-              fontFamily: "bold",
-              letterSpacing: ".2rem",
-              color: "inherit",
-              textDecoration: "none",
+              fontSize: "26px",
+              fontWeight: "bold",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              cursor: "pointer",
             }}
           >
             React Flow
@@ -114,7 +114,7 @@ function ResponsiveAppBar() {
             href="#app-bar-with-responsive-menu"
             sx={{
               mr: 2,
-              display: { xs: "flex", md: "none" },
+              display: { xs: "2", md: "2" },
               flexGrow: 1,
               fontFamily: "monospace",
               fontWeight: 700,
@@ -123,24 +123,23 @@ function ResponsiveAppBar() {
               textDecoration: "none",
             }}
           ></Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Box sx={{ flexGrow: 0.1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Button
                 key={page}
                 onClick={() => {
                   handleCloseNavMenu();
-                  if (page === "Register now") handleRedirect(); 
+                  if (page === "Login") handleRedirect();
                 }}
                 sx={{
                   my: 2,
                   color: "white",
                   display: "block",
                   marginLeft: "295px",
-                  backgroundColor:
-                    page === "Register now" ? "#CD5C5C" : "transparent",
-                  fontWeight: page === "Register now" ? "bold" : "normal",
-                  borderRadius: page === "Register now" ? "17px" : "11px",
-                  textTransform: page === "Register now" ? "none" : "uppercase",
+                  backgroundColor: page === "Login" ? "#CD5C5C" : "transparent",
+                  fontWeight: page === "Login" ? "bold" : "normal",
+                  borderRadius: page === "Login" ? "17px" : "11px",
+                  textTransform: page === "Login" ? "none" : "uppercase",
                 }}
               >
                 {page}
