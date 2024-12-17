@@ -10,4 +10,4 @@ function  dashboard() {
   )
 }
 
-export default dashboard
+export default dashboard;
