@@ -18,7 +18,7 @@
   }
   
   .title {
-    color: #4caf50;
+    color: #0b1c4e;
     font-size: 1.8rem;
     margin-bottom: 1rem;
   }
@@ -66,12 +66,12 @@
   }
   
   .forgot-link {
-    color: #4caf50;
+    color: #0b1c4e;
     text-decoration: none;
   }
   
   .sign-in-btn {
-    background-color: #4caf50;
+    background-color: #0b1c4e;
     color: #fff;
     border: none;
     padding: 0.75rem;
@@ -81,20 +81,44 @@
   }
   
   .sign-in-btn:hover {
-    background-color: #45a049;
+    background-color: #1a2a6c;
   }
   
   /* Right Side - Signup Section */
   .signup-section {
-    flex: 1;
-    background-color: #4caf50;
+    flex: 1.5;
+    background: linear-gradient(
+      135deg,
+      #0b1c4e 0%, 
+      #1a2a6c 40%, 
+      #1b1242 90%
+    );
     color: #fff;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
+    backdrop-filter: blur(20px);
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.4);
+    position: relative;
   }
+
+  /* Optional gradient enhancement for smooth edges */
+.signup-section::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at 30% 30%, 
+    rgba(255, 255, 255, 0.05) 10%, 
+    transparent 70%
+  );
+  pointer-events: none;
+}
   
   .welcome-text {
     font-size: 2rem;
@@ -109,7 +133,7 @@
   
   .signup-btn {
     background-color: #fff;
-    color: #4caf50;
+    color: #1a2a6c;
     border: none;
     padding: 0.75rem 1.5rem;
     cursor: pointer;
@@ -124,7 +148,7 @@
   /* Error Message Styling */
 .error-message {
     color: red;
-    font-size: 0.80rem;
+    font-size: 0.75rem;
     margin-top: -2px;
     margin-bottom: 8px;
   }
