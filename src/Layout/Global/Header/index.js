@@ -1,3 +1,4 @@
+"use client";
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -13,7 +14,7 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 
-const pages = ["Home", "FAQ", "Register now"];
+const pages = ["Home", "FAQ", "Login"];
 // const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function ResponsiveAppBar() {
@@ -119,7 +120,6 @@ function ResponsiveAppBar() {
               textDecoration: "none",
             }}
           >
-            LOGO
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
@@ -132,10 +132,10 @@ function ResponsiveAppBar() {
                   display: "block",
                   marginLeft: "295px",
                   backgroundColor:
-                    page === "Register now" ? "#CD5C5C" : "transparent",
-                  fontWeight: page === "Register now" ? "bold" : "normal",
-                  borderRadius: page === "Register now" ? "17px" : "11px",
-                  textTransform: page === "Register now" ? "none" : "uppercase",
+                    page === "Login" ? "#CD5C5C" : "transparent",
+                  fontWeight: page === "Login" ? "bold" : "normal",
+                  borderRadius: page === "Login" ? "17px" : "11px",
+                  textTransform: page === "Login" ? "none" : "uppercase",
                 }}
               >
                 {page}

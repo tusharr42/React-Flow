@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import ResponsiveAppBar from "../Global/Header/page.js";
+import ResponsiveAppBar from "../Global/Header/index.js";
 
 const HomePage = () => {
   return (
