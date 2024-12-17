@@ -2,25 +2,31 @@
 import React from "react";
 import Image from "next/image";
 import ResponsiveAppBar from "../Global/Header/index.js";
+import { useRouter } from "next/navigation";
 
 const HomePage = () => {
+  const router = useRouter();
+
+  const handleRedirect = () => {
+    router.push("/signup");
+  };
+
   return (
-    
     <div style={{ position: "relative", width: "1400px", height: "600px" }}>
       <ResponsiveAppBar />
-      <div style={{height:'83%'}}>
-      <video
-        src="/assets/building1.mp4"
-        autoPlay
-        loop
-        muted
-        style={{
-          width: "100%",
-          height: "500px",
-          objectFit: "cover",
-          zIndex: -1,
-        }}
-      />
+      <div style={{ height: "83%" }}>
+        <video
+          src="/assets/building1.mp4"
+          autoPlay
+          loop
+          muted
+          style={{
+            width: "100%",
+            height: "500px",
+            objectFit: "cover",
+            zIndex: -1,
+          }}
+        />
       </div>
 
       <div
@@ -39,7 +45,8 @@ const HomePage = () => {
       </div>
       <div
         style={{
-          background: "linear-gradient(to right, rgba(0, 0, 255, 0.7), rgba(0, 255, 255, 0.7), rgba(128, 0, 128, 0.7), rgba(238, 130, 238, 0.7), rgba(255, 165, 0, 0.7), rgba(0, 0, 0, 0.7))",
+          background:
+            "linear-gradient(to right, rgba(0, 0, 255, 0.7), rgba(0, 255, 255, 0.7), rgba(128, 0, 128, 0.7), rgba(238, 130, 238, 0.7), rgba(255, 165, 0, 0.7), rgba(0, 0, 0, 0.7))",
           color: "white",
           padding: "20px",
           textAlign: "center",
@@ -50,6 +57,7 @@ const HomePage = () => {
       >
         Registration is now open now
         <button
+          onClick={handleRedirect}
           style={{
             backgroundColor: "#CD5C5C" || "transparent",
             color: "#CCCCFF",

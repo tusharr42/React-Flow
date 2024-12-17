@@ -96,7 +96,7 @@ const LoginPage = () => {
 
       {/* Right Side: Sign Up */}
       <div className="signup-section">
-        <h2 className="welcome-text">Hello, Friend!</h2>
+        <h2 className="welcome-text">ReactFlow AI Agents</h2>
         <p className="signup-text">
           Fill up personal information and start your journey with us.
         </p>

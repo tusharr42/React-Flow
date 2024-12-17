@@ -1,4 +1,3 @@
-"use client";
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -12,14 +11,19 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
+import { useRouter } from "next/navigation";
 import AdbIcon from "@mui/icons-material/Adb";
 
-const pages = ["Home", "FAQ", "Login"];
-// const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const pages = ["Home", " FAQ","Login"];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const router = useRouter();
+
+  const handleRedirect = () => {
+    router.push("/login");
+  };
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -103,7 +107,6 @@ function ResponsiveAppBar() {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
@@ -111,7 +114,7 @@ function ResponsiveAppBar() {
             href="#app-bar-with-responsive-menu"
             sx={{
               mr: 2,
-              display: { xs: "flex", md: "none" },
+              display: { xs: "2", md: "2" },
               flexGrow: 1,
               fontFamily: "monospace",
               fontWeight: 700,
@@ -119,13 +122,15 @@ function ResponsiveAppBar() {
               color: "inherit",
               textDecoration: "none",
             }}
-          >
-          </Typography>
+          ></Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                onClick={() => {
+                  handleCloseNavMenu();
+                  if (page === "Login") handleRedirect(); 
+                }}
                 sx={{
                   my: 2,
                   color: "white",
