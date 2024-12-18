@@ -1,4 +1,5 @@
-import React from "react";
+import React from "react"; // React import
+import { useRouter } from "next/navigation"; // Import useRouter from next/router
 import {
   AppBar,
   Toolbar,
@@ -12,6 +13,7 @@ import {
 import HomeIcon from "@mui/icons-material/Home";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
+// NavBar Component
 function NavBar() {
   return (
     <AppBar
@@ -48,7 +50,14 @@ function NavBar() {
   );
 }
 
+// IntegrationPage Component
 function IntegrationPage() {
+  const router = useRouter();  // Use useRouter from Next.js for navigation
+
+  const handleCreateNewProcess = () => {
+    router.push("/reactflow"); // Navigate using router.push
+  };
+
   return (
     <Box>
       {/* Navigation Bar */}
@@ -103,6 +112,7 @@ function IntegrationPage() {
                 boxShadow: "0px 2px 6px rgba(0,0,0,0.1)",
               },
             }}
+            onClick={handleCreateNewProcess}
           >
             <CardContent>
               <Typography
