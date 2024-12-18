@@ -15,10 +15,14 @@
     "@mui/icons-material": "^6.2.0",
     "@mui/material": "^6.2.0",
     "@mui/styled-engine-sc": "^6.2.0",
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
     "mongoose": "^8.9.1",
     "next": "15.1.0",
+    "next-auth": "^4.24.11",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-toastify": "^11.0.0",
     "styled-components": "^6.1.13"
   },
   "devDependencies": {

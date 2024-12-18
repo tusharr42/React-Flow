@@ -31,7 +31,7 @@ function ResponsiveAppBar() {
   return (
     <AppBar
       position="sticky" // Change position to fixed
-      top='0'
+      top="0"
       sx={{
         backgroundColor: "White",
         width: "100%", // Ensure it spans the full width
@@ -49,7 +49,15 @@ function ResponsiveAppBar() {
             cursor: "pointer",
           }}
         >
-          React Flow
+          <img
+            src="/assets/images.png" // Provide the path to your image
+            alt="React Flow"
+            style={{
+              height: "60px", // Adjust as needed
+              objectFit: "contain",
+              marginTop: "10px",
+            }}
+          />
         </Typography>
 
         <Box sx={{ display: { xs: "none", sm: "block" } }}>

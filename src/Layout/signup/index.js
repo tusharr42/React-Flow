@@ -1,8 +1,21 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Box, Paper, TextField, MenuItem, Typography, Checkbox, FormControlLabel } from "@mui/material";
+import {
+  Box,
+  Paper,
+  TextField,
+  MenuItem,
+  Typography,
+  Checkbox,
+  FormControlLabel,
+} from "@mui/material";
+import { useRouter } from "next/navigation";
+import { registerUser } from "../../app/api/Actions/user.action";
 import { styled } from "@mui/system";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 // Background Styling
 const Background = styled("div")({
@@ -87,6 +100,7 @@ const StyledButton = styled("button")({
 });
 
 const SignUp = () => {
+  const router = useRouter();
   const [countries, setCountries] = useState([]);
   const [formData, setFormData] = useState({
     firstName: "",
@@ -123,54 +137,81 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("formData:", formData);
 
     try {
-      const response = await fetch("/api/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await response.json();
-      if (response.ok) {
-        alert(data.message); // Handle successful registration
+      const response = await registerUser(formData);
+      if (response.status) {
+        toast.success("SignUp successful!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+        console.log(
+          "Signup successful! You will be redirected to the sign-in page."
+        );
+        setTimeout(() => {
+          router.push("/login");
+        }, 4000); // Delay to allow toast to be visible
       } else {
-        alert(data.message); // Handle error message from API
+        // Only show the toast if there’s an error message
+        if (response.error) {
+          toast.error("SignUp Failed!");
+          console.error(response.error);
+        }
       }
-    } catch (error) {
-      console.error("Error during sign-up:", error);
-      alert("An error occurred. Please try again.");
+    } catch (err) {
+      toast.error("Registration error:", err);
+      console.error("Registration error:", err);
+      console.error("An error occurred during registration.");
     }
   };
 
   return (
     <Background>
-      {/* Logo at the Top Left */}
-      <LogoContainer>React Flow</LogoContainer>
+      <LogoContainer>
+        <img
+          src="/assets/removebg.png" // Provide the path to your image
+          alt="React Flow"
+          style={{
+            height: "90px", // Adjust as needed
+            objectFit: "contain",
+          }}
+        />
+      </LogoContainer>
 
-      {/* Left Side Text Content */}
       <TextContent>
         <StyledHeading>Try React Flow free for 30 days</StyledHeading>
         <StyledSubHeading>
-          Learn why over 20,000 of the world’s leading organizations trust React Flow’s intelligent integration and
-          automation platform for their digital transformation journey.
+          Learn why over 20,000 of the world’s leading organizations trust React
+          Flow’s intelligent integration and automation platform for their
+          digital transformation journey.
         </StyledSubHeading>
-        <StyledListItem>&#x2022; Ease-of-use and crowd-sourced intelligence</StyledListItem>
-        <StyledListItem>&#x2022; Scalable and secure cloud-native architecture</StyledListItem>
         <StyledListItem>
-          &#x2022; Industry-leading innovation delivered through continuous updates
+          &#x2022; Ease-of-use and crowd-sourced intelligence
         </StyledListItem>
         <StyledListItem>
-          &#x2022; 10X Leader in the Gartner® Magic Quadrant™ for Integration Platform
+          &#x2022; Scalable and secure cloud-native architecture
         </StyledListItem>
         <StyledListItem>
-          &#x2022; Best-in-class customer satisfaction rating and direct renewal rate
+          &#x2022; Industry-leading innovation delivered through continuous
+          updates
+        </StyledListItem>
+        <StyledListItem>
+          &#x2022; 10X Leader in the Gartner® Magic Quadrant™ for Integration
+          Platform
+        </StyledListItem>
+        <StyledListItem>
+          &#x2022; Best-in-class customer satisfaction rating and direct renewal
+          rate
         </StyledListItem>
       </TextContent>
 
-      {/* Right Side Form */}
       <FormContainer elevation={3}>
         <Typography variant="h5" gutterBottom style={{ fontWeight: "bold" }}>
           Sign Up
@@ -246,7 +287,10 @@ const SignUp = () => {
             label={
               <Typography variant="body2">
                 I agree to the{" "}
-                <a href="#" style={{ color: "#1976d2", textDecoration: "none" }}>
+                <a
+                  href="#"
+                  style={{ color: "#1976d2", textDecoration: "none" }}
+                >
                   React Flow Master Services Agreement terms and conditions
                 </a>
               </Typography>
@@ -257,6 +301,7 @@ const SignUp = () => {
           </Box>
         </form>
       </FormContainer>
+      <ToastContainer />
     </Background>
   );
 };

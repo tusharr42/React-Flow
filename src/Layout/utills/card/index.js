@@ -13,7 +13,11 @@ const ImageTextCard = () => {
   ];
 
   // Titles for each card
-  const titles = ["Title 1", "Title 2", "Title 3"];
+  const titles = [
+    "API Management Discover, manage, and govern all your APIs in one place",
+    "Streamline business processes that span applications",
+    "Data Management Secure, sync, and trust your data",
+  ];
 
   return (
     <Box
