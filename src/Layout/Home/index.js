@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React from "react";``
 import Image from "next/image";
 import ResponsiveAppBar from "../Global/Header/index.js";
 import { useRouter } from "next/navigation";
