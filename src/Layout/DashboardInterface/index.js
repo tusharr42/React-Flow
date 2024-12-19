@@ -1,4 +1,5 @@
-import React from "react";
+import React from "react"; // React import
+import { useRouter } from "next/navigation"; // Import useRouter from next/router
 import {
   AppBar,
   Toolbar,
@@ -30,7 +31,7 @@ function NavBar() {
           minHeight: "48px",
         }}
       >
-        {/* Home Icon */}
+        
         <Box>
           <IconButton>
             <HomeIcon sx={{ fontSize: "28px", color: "#002855" }} />
@@ -48,7 +49,14 @@ function NavBar() {
   );
 }
 
+
 function IntegrationPage() {
+  const router = useRouter();  
+
+  const handleCreateNewProcess = () => {
+    router.push("/reactflow"); // Navigate using router.push
+  };
+
   return (
     <Box>
       {/* Navigation Bar */}
@@ -103,6 +111,7 @@ function IntegrationPage() {
                 boxShadow: "0px 2px 6px rgba(0,0,0,0.1)",
               },
             }}
+            onClick={handleCreateNewProcess}
           >
             <CardContent>
               <Typography
