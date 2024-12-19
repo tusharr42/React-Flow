@@ -13,7 +13,6 @@ import {
 import HomeIcon from "@mui/icons-material/Home";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
-// NavBar Component
 function NavBar() {
   return (
     <AppBar
@@ -32,7 +31,7 @@ function NavBar() {
           minHeight: "48px",
         }}
       >
-        {/* Home Icon */}
+        
         <Box>
           <IconButton>
             <HomeIcon sx={{ fontSize: "28px", color: "#002855" }} />
@@ -50,9 +49,9 @@ function NavBar() {
   );
 }
 
-// IntegrationPage Component
+
 function IntegrationPage() {
-  const router = useRouter();  // Use useRouter from Next.js for navigation
+  const router = useRouter();  
 
   const handleCreateNewProcess = () => {
     router.push("/reactflow"); // Navigate using router.push
