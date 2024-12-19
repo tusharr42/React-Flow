@@ -8,6 +8,7 @@ import Sidebar from '../../../Global/Sidebar';
 import Footer from '../../../Global/Footer';
 import ComponentsPanel from '../../../Global/ComponentsPannel';// Corrected the import name
 import NavigationBar from '../NavigationBar';
+import Flow from '../Flow';
 
 const DashboardInner = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true); // State to manage sidebar open/close
@@ -62,12 +63,13 @@ const DashboardInner = () => {
           {/* Replacing the old content with DashboardInterface */}
           { <div style={contentStyle}>
             <NavigationBar/>
+            <Flow />
           </div> }
         </div>
       </div>
-
       <Footer />
     </div>
+    
   );
 };
 

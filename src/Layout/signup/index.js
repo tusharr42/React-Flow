@@ -187,6 +187,7 @@ const SignUp = () => {
 
     try {
       const response = await registerUser(formData);
+      console.log('formdata', formData);
       if (response.status) {
         toast.success("SignUp successful!");
         setTimeout(() => {
@@ -195,6 +196,7 @@ const SignUp = () => {
       } else {
         if (response.error) {
           toast.error("SignUp Failed!");
+          console.log('error', response)
         }
       }
     } catch (err) {

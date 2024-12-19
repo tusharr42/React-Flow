@@ -70,7 +70,7 @@ function Navbar() {
       {/* Left Side - Logo and Links */}
       <div style={leftNavStyle}>
         <div style={reactFlowTextStyle}>
-          <img
+          {/* <img
             src="/assets/removebg.png"
             alt="React Flow"
             width={120} // Set the width you want
@@ -79,7 +79,7 @@ function Navbar() {
               objectFit: "contain",
               marginTop: "10px",
             }}
-          />
+          /> */}
         </div>
         <ul style={navLinksStyle}>
           <li
