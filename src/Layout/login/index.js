@@ -1,15 +1,13 @@
 "use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { signIn } from "next-auth/react"; 
-import { toast } from "react-toastify"; 
+import { signIn } from "next-auth/react";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import "./login.css";
 
-
 const LoginPage = () => {
-  
   const [formData, setFormData] = useState({
     email: "",
     password: "",
