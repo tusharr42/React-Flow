@@ -28,7 +28,7 @@ const HomePage = () => {
           width: "100%",
         }}
       >
-        Registration is now open now
+        Registration is open now
         <button
           onClick={handleRedirect}
           style={{

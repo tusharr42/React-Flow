@@ -16,6 +16,8 @@ const LoginPage = () => {
 
   // State for validation errors
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
+
   const router = useRouter();
   const handleRedirect = () => {
     router.push("/signup");
@@ -32,6 +34,7 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     const handleRedirect = () => {
       router.push("/signup");
@@ -90,11 +93,11 @@ const LoginPage = () => {
         console.log("An unexpected error occurred.");
       }
     }
+    setLoading(false);
   };
 
   return (
     <div className="container">
-      {/* Left Side: Sign In */}
       <div className="login-section">
         <h2 className="title">Sign in to Account</h2>
         <div className="social-icons">
@@ -141,8 +144,12 @@ const LoginPage = () => {
           </div>
 
           {/* Submit Button */}
-          <button type="submit" className="sign-in-btn">
-            Sign In
+          <button type="submit" className="sign-in-btn" disabled={loading}>
+            {loading ? (
+              <div className="spinner"></div> 
+            ) : (
+              "Sign In"
+            )}
           </button>
         </form>
       </div>

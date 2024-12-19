@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Box } from "@mui/material";
+import { signOut } from "next-auth/react"; 
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
@@ -15,6 +16,12 @@ function Navbar() {
     padding: "10px 20px",
     fontFamily: "Arial, sans-serif",
     boxSizing: "border-box",
+  };
+
+  const handleSignOut = () => {
+    signOut({
+      callbackUrl: '/login', // Redirect to login page after sign-out
+    });
   };
 
   const leftNavStyle = {
@@ -126,6 +133,7 @@ function Navbar() {
             fontSize: "12px",
             padding: "5px 10px",
           }}
+          onClick={handleSignOut}
           onMouseEnter={(e) => {
             e.target.style.backgroundColor = "white";
             e.target.style.color = "#002855";

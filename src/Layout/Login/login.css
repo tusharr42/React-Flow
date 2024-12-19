@@ -6,6 +6,41 @@
   margin: 0;
 }
 
+.sign-in-btn {
+  display: flex; 
+  align-items: center;
+  justify-content: center; 
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.sign-in-btn:disabled {
+  background-color: #ddd; /* Disable the button's background when loading */
+  cursor: not-allowed; /* Show a not-allowed cursor when disabled */
+}
+
+.spinner {
+  border: 3px solid #f3f3f3; /* Light grey background */
+  border-top: 3px solid #fff; /* White spinner */
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+  margin-right: 10px; /* Space between spinner and text */
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
 /* Left Side - Login Section */
 .login-section {
   flex: 1;
