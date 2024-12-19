@@ -51,9 +51,6 @@ const HomePage = () => {
       <div>
         <img
           src="/assets/new6.png"
-          autoPlay
-          loop
-          muted
           style={{
             width: "100%",
             height: "100%",
