@@ -70,8 +70,8 @@ function Navbar() {
       {/* Left Side - Logo and Links */}
       <div style={leftNavStyle}>
         <div style={reactFlowTextStyle}>
-          <Image
-            src="/assets/removebg.png" // Path to your image file
+          <img
+            src="/assets/removebg.png"
             alt="React Flow"
             width={120} // Set the width you want
             height={60} // Set the height you want
