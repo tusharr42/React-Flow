@@ -1,15 +1,12 @@
 import React from "react"; // React import
 import { useRouter } from "next/navigation";
 // import Flow from '../Flow'
-import {
-  AppBar,
-  Toolbar,
-  Box,
-  IconButton,
-  Typography,
-} from "@mui/material";
+import { AppBar, Toolbar, Box, IconButton, Typography } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import ProcessBox from "@/Layout/utills/innerDashboardRows";
+import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
+
 
 function NavBar() {
   return (
@@ -47,17 +44,13 @@ function NavBar() {
 }
 
 function NavigationBar() {
-  
-
   return (
     <Box>
-      {/* Navigation Bar */}
       <NavBar />
-
-      {/* Main Content Removed */}
-      {/* <Flow/> */}
+      <ProcessBox/>
     </Box>
+    
   );
 }
 
-export default  NavigationBar;
+export default NavigationBar;
