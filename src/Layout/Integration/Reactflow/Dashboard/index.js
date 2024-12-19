@@ -7,7 +7,7 @@ import SecondaryNavBar from '../../../Global/SecondaryNavbar';
 import Sidebar from '../../../Global/Sidebar';
 import Footer from '../../../Global/Footer';
 import ComponentsPanel from '../../../Global/ComponentsPannel';// Corrected the import name
-import DashboardInterface from '../../../DashboardInterface';
+
 
 const DashboardInner = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true); // State to manage sidebar open/close
