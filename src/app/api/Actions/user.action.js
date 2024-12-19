@@ -1,5 +1,4 @@
 "use server";
-
 import bcrypt from "bcryptjs";
 import { dbConnection } from "../dbconnection";
 import User from "../Model/user.model";

@@ -39,7 +39,7 @@ const Footer = () => {
           onMouseOver={(e) => (e.target.style.color = linkHoverStyle.color)}
           onMouseOut={(e) => (e.target.style.color = linkStyle.color)}
         >
-          Boomi.com
+          ReactFlow.com
         </a>
         <a
           href="/status"

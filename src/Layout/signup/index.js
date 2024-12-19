@@ -102,6 +102,7 @@ const StyledButton = styled("button")({
 const SignUp = () => {
   const router = useRouter();
   const [countries, setCountries] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -129,10 +130,11 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+    setLoading(true);
+
     // Client-side Validation
     const validationErrors = {};
-  
+
     // Check if required fields are filled
     Object.keys(formData).forEach((key) => {
       // Check required fields for all fields, including companyName, jobTitle, and phoneNumber
@@ -150,41 +152,39 @@ const SignUp = () => {
         validationErrors[key] = `This field is required`;
       }
     });
-  
     // Validate Email Format
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (formData.email && !emailRegex.test(formData.email)) {
       validationErrors.email = "Invalid email format";
     }
-  
     // Validate Phone Number (basic validation)
     const phoneRegex = /^[0-9]{10}$/; // Adjust according to your country's phone format
     if (formData.phoneNumber && !phoneRegex.test(formData.phoneNumber)) {
       validationErrors.phoneNumber = "Invalid phone number format";
     }
-  
+
     // Password validation
     const passwordRegex =
       /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
-  
+
     if (!formData.password) {
       validationErrors.password = "This field is required";
     } else if (!passwordRegex.test(formData.password)) {
       validationErrors.password =
         "Password must have at least 6 characters, one uppercase letter, one lowercase letter, one number, and one special character.";
     }
-  
     // Check if country is selected
     if (!formData.country) {
       validationErrors.country = "This field is required";
     }
-  
+
     // If there are validation errors, do not submit the form
     if (Object.keys(validationErrors).length > 0) {
       setFormErrors(validationErrors);
+      setLoading(false);
       return;
     }
-  
+
     try {
       const response = await registerUser(formData);
       if (response.status) {
@@ -199,9 +199,11 @@ const SignUp = () => {
       }
     } catch (err) {
       toast.error("Registration error:", err);
+    } finally {
+      setLoading(false); // Stop spinner after the operation
     }
   };
-  
+
   const [formErrors, setFormErrors] = useState({});
 
   const handleChange = (e) => {
@@ -359,8 +361,31 @@ const SignUp = () => {
               </Typography>
             }
           />
-          <Box mt={3}>
-            <StyledButton type="submit">Submit</StyledButton>
+          <Box mt={1}>
+            <StyledButton
+              type="submit"
+              disabled={loading} // Disable the button when loading
+              style={{
+                display: "flex", // Use flex to align spinner and text inline
+                alignItems: "center", // Center items vertically
+                justifyContent: "center", // Center items horizontally
+              }}
+            >
+              {loading && (
+                <div
+                  style={{
+                    border: "3px solid #f3f3f3", // Light grey background
+                    borderTop: "3px solid #fff", // White spinner
+                    borderRadius: "50%",
+                    width: "20px",
+                    height: "20px",
+                    animation: "spin 1s linear infinite",
+                    marginRight: "10px", // Space between spinner and text
+                  }}
+                ></div>
+              )}
+              {!loading && "Submit"} {/* Show Submit text when not loading */}
+            </StyledButton>
           </Box>
         </form>
       </FormContainer>
