@@ -5,7 +5,7 @@ import {
   Background,
   applyNodeChanges,
   applyEdgeChanges,
-  MiniMap,
+  // MiniMap,
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
  

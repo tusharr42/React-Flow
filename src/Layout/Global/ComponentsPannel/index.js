@@ -4,7 +4,7 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 
 function ComponentsPanel() {
   return (
-    <div style={{ width: "350px", border: "1px solid #ddd", padding: "10px" }}>
+    <div style={{ width: "290px", border: "1px solid #ddd", padding: "10px" }}>
       {/* Container for Search Input and Filter Button */}
       <div
         style={{
