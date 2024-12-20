@@ -22,8 +22,7 @@ const ImageTextCard = () => {
   return (
     <Box
       sx={{
-        width: "100%", // Ensures the box takes full width
-        // Remove height and overflowY properties to avoid scrolling
+        width: "100%",
       }}
     >
       <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
@@ -35,6 +34,7 @@ const ImageTextCard = () => {
               flexDirection: "row",
               width: "100%",
               borderRadius: 2,
+              marginLeft: "19px",
               transition: "transform 0.3s ease",
               "&:hover": {
                 transform: "scale(1.05)",

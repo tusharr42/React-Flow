@@ -10,6 +10,7 @@ import Button from "@mui/material/Button";
 import RoundaboutRightIcon from "@mui/icons-material/RoundaboutRight";
 import AddRoadIcon from "@mui/icons-material/AddRoad";
 import TabsPage from "..";
+import { red } from "@mui/material/colors";
 
 export default function ProcessBox() {
   return (
@@ -20,7 +21,9 @@ export default function ProcessBox() {
           justifyContent: "space-between",
           alignItems: "center",
           padding: 2,
-          width: "100%",
+          position: "fixed",
+          top: "206px",
+          width: "-webkit-fill-available",
         }}
       >
         <Box
@@ -31,6 +34,7 @@ export default function ProcessBox() {
             border: "1px solid #ccc",
             flexGrow: 1,
             justifyContent: "space-between",
+            background: "white"
           }}
         >
           <SettingsSuggestIcon />
@@ -56,6 +60,7 @@ export default function ProcessBox() {
             border: "1px solid #ccc",
             width: "15%",
             justifyContent: "center",
+            background: "white"
           }}
         >
           <LocalDrinkIcon />
@@ -72,7 +77,7 @@ export default function ProcessBox() {
           }}
         >
           <Stack spacing={1} direction="row">
-            <Button sx={{ marginRight: 2, padding: 1 }} variant="outlined">
+            <Button sx={{ marginRight: 2, padding: 1, background:"white" }} variant="outlined">
               Save & Close
             </Button>
             <Button
@@ -102,6 +107,8 @@ export default function ProcessBox() {
             padding: 2,
             gap: 2,
             width: "8%", // You can adjust the width as needed
+            position: "absolute",
+            top: "269px",
           }}
         >
           {/* Add clickable icons with rounded borders */}

@@ -9,8 +9,13 @@ import {
   List,
   ListItem,
   ListItemText,
+  ListItemIcon, // Import ListItemIcon for positioning the icon
 } from "@mui/material";
-
+import MyLocationIcon from "@mui/icons-material/MyLocation";
+import AddIcon from "@mui/icons-material/Add";
+import MessageIcon from "@mui/icons-material/Message";
+import NotificationAddIcon from "@mui/icons-material/NotificationAdd";
+import TerminalIcon from "@mui/icons-material/Terminal";
 
 function TabsPage() {
   const [tabValue, setTabValue] = useState(0);
@@ -36,6 +41,117 @@ function TabsPage() {
         "&:hover": { backgroundColor: "#f0f0f0" },
       }}
     >
+      {/* Check if the label is "Map" to add the icon */}
+      {label === "Map" && (
+        <ListItemIcon
+          sx={{ minWidth: 30, display: "flex", alignItems: "center" }}
+        >
+          <img
+            src="/assets/map.jpg"
+            style={{ width: "25px", height: "auto", marginRight: "8px" }}
+          />
+        </ListItemIcon>
+      )}
+      {label === "Set Property" && (
+        <ListItemIcon
+          sx={{ minWidth: 30, display: "flex", alignItems: "center" }}
+        >
+          <img
+            src="/assets/setproperty.png"
+            style={{ width: "25px", height: "auto", marginRight: "8px" }}
+          />
+        </ListItemIcon>
+      )}
+      {label === "Message" && (
+        <ListItemIcon
+          sx={{ minWidth: 30, display: "flex", alignItems: "center" }}
+        >
+          <img
+            src="/assets/message.png"
+            style={{ width: "25px", height: "auto", marginRight: "8px" }}
+          />
+        </ListItemIcon>
+      )}
+      {label === "Notify" && (
+        <ListItemIcon
+          sx={{ minWidth: 30, display: "flex", alignItems: "center" }}
+        >
+          <img
+            src="/assets/notify.png"
+            style={{ width: "25px", height: "auto", marginRight: "8px" }}
+          />
+        </ListItemIcon>
+      )}
+      {label === "Program Command" && (
+        <ListItemIcon
+          sx={{ minWidth: 30, display: "flex", alignItems: "center" }}
+        >
+          <img
+            src="/assets/program.png"
+            style={{ width: "25px", height: "auto", marginRight: "8px" }}
+          />
+        </ListItemIcon>
+      )}
+      {label === "MongoDb" && (
+        <ListItemIcon
+          sx={{ minWidth: 30, display: "flex", alignItems: "center" }}
+        >
+          <img
+            src="/assets/mongodb.svg"
+            style={{ width: "28px", height: "auto", marginRight: "8px" }}
+          />
+        </ListItemIcon>
+      )}
+      {label === "SQL" && (
+        <ListItemIcon
+          sx={{ minWidth: 30, display: "flex", alignItems: "center" }}
+        >
+          <img
+            src="/assets/sql2.webp"
+            style={{ width: "25px", height: "auto", marginRight: "8px" }}
+          />
+        </ListItemIcon>
+      )}
+      {label === "Appwrite" && (
+        <ListItemIcon
+          sx={{ minWidth: 30, display: "flex", alignItems: "center" }}
+        >
+          <img
+            src="/assets/appwrite.png"
+            style={{ width: "25px", height: "auto", marginRight: "8px" }}
+          />
+        </ListItemIcon>
+      )}
+      {label === "Try and Catch" && (
+        <ListItemIcon
+          sx={{ minWidth: 30, display: "flex", alignItems: "center" }}
+        >
+          <img
+            src="/assets/try1.jpg"
+            style={{ width: "28px", height: "auto", marginRight: "8px" }}
+          />
+        </ListItemIcon>
+      )}
+      {label === "Start" && (
+        <ListItemIcon
+          sx={{ minWidth: 30, display: "flex", alignItems: "center" }}
+        >
+          <img
+            src="/assets/start.jpg"
+            style={{ width: "28px", height: "auto", marginRight: "8px" }}
+          />
+        </ListItemIcon>
+      )}
+      {label === "Stop" && (
+        <ListItemIcon
+          sx={{ minWidth: 30, display: "flex", alignItems: "center" }}
+        >
+          <img
+            src="/assets/stop.webp"
+            style={{ width: "28px", height: "auto", marginRight: "8px" }}
+          />
+        </ListItemIcon>
+      )}
       <ListItemText primary={label} />
     </ListItem>
   );
@@ -48,7 +164,17 @@ function TabsPage() {
   ];
 
   return (
-    <Card sx={{ width: 300, height: 280, boxShadow: 1, marginBottom: 3 }}>
+    <Card
+      sx={{
+        width: 280,
+        height: 310,
+        boxShadow: 1,
+        marginBottom: 3,
+        position: "absolute",
+        top: "282px",
+        left: "457px",
+      }}
+    >
       <CardContent>
         {/* Search Bar */}
         <TextField
