@@ -1,5 +1,16 @@
 import React, { useState } from "react";
-import { Card, CardContent, TextField, Tabs, Tab, Box } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  TextField,
+  Tabs,
+  Tab,
+  Box,
+  List,
+  ListItem,
+  ListItemText,
+} from "@mui/material";
+
 
 function TabsPage() {
   const [tabValue, setTabValue] = useState(0);
@@ -15,13 +26,34 @@ function TabsPage() {
     setSearchTerm(event.target.value);
   };
 
+  // Reusable TabItem component
+  const TabItem = ({ label }) => (
+    <ListItem
+      sx={{
+        padding: "8px",
+        cursor: "pointer",
+        transition: "background-color 0.3s ease",
+        "&:hover": { backgroundColor: "#f0f0f0" },
+      }}
+    >
+      <ListItemText primary={label} />
+    </ListItem>
+  );
+
+  // Content for each tab
+  const tabContent = [
+    ["MongoDb", "SQL", "Appwrite"],
+    ["Map", "Set Property", "Message", "Notify", "Program Command"],
+    ["Try and Catch", "Start", "Stop"],
+  ];
+
   return (
-    <Card sx={{ width: 400, boxShadow: 1, borderRadius: 1 }}>
+    <Card sx={{ width: 300, height: 280, boxShadow: 1, marginBottom: 3 }}>
       <CardContent>
         {/* Search Bar */}
         <TextField
           fullWidth
-          label="Search..."
+          label="Search all steps"
           variant="outlined"
           value={searchTerm}
           onChange={handleSearchChange}
@@ -37,33 +69,20 @@ function TabsPage() {
 
         {/* Tab Content */}
         <Box
-          sx={{ marginTop: 2, display: "flex", flexDirection: "row", gap: 2 }}
+          sx={{
+            marginTop: 1,
+            display: "flex",
+            flexDirection: "column",
+            gap: 1,
+            height: 200,
+            overflowY: "auto",
+          }}
         >
-          {tabValue === 0 && (
-            <>
-              <div>MongoDb</div>
-              <div>SQL</div>
-              <div>Appwrite</div>
-            </>
-          )}
-
-          {tabValue === 1 && (
-            <>
-              <div>Map</div>
-              <div>Set Property</div>
-              <div>Message</div>
-              <div>Notify</div>
-              <div>Program Command</div>
-            </>
-          )}
-
-          {tabValue === 2 && (
-            <>
-              <div>try and catch</div>
-              <div>start</div>
-              <div>stop</div>
-            </>
-          )}
+          <List>
+            {tabContent[tabValue].map((item, index) => (
+              <TabItem key={index} label={item} />
+            ))}
+          </List>
         </Box>
       </CardContent>
     </Card>
