@@ -167,12 +167,12 @@ function TabsPage() {
     <Card
       sx={{
         width: 280,
-        height: 310,
+        height: 345,
         boxShadow: 1,
         marginBottom: 3,
         position: "absolute",
-        top: "282px",
-        left: "457px",
+        top: "228px",
+        left: "450px",
       }}
     >
       <CardContent>

@@ -152,13 +152,11 @@ const SignUp = () => {
         validationErrors[key] = `This field is required`;
       }
     });
-
     // Validate Email Format
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (formData.email && !emailRegex.test(formData.email)) {
       validationErrors.email = "Invalid email format";
     }
-
     // Validate Phone Number (basic validation)
     const phoneRegex = /^[0-9]{10}$/; // Adjust according to your country's phone format
     if (formData.phoneNumber && !phoneRegex.test(formData.phoneNumber)) {
@@ -175,7 +173,6 @@ const SignUp = () => {
       validationErrors.password =
         "Password must have at least 6 characters, one uppercase letter, one lowercase letter, one number, and one special character.";
     }
-
     // Check if country is selected
     if (!formData.country) {
       validationErrors.country = "This field is required";
@@ -190,6 +187,7 @@ const SignUp = () => {
 
     try {
       const response = await registerUser(formData);
+      console.log('formdata', formData);
       if (response.status) {
         toast.success("SignUp successful!");
         setTimeout(() => {
@@ -198,6 +196,7 @@ const SignUp = () => {
       } else {
         if (response.error) {
           toast.error("SignUp Failed!");
+          console.log('error', response)
         }
       }
     } catch (err) {

@@ -74,9 +74,9 @@ const DashboardInner = () => {
           }
         </div>
       </div>
-
       <Footer />
     </div>
+    
   );
 };
 

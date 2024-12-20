@@ -1,10 +1,11 @@
 import React from "react";
 import { Button, Box } from "@mui/material";
-import { signOut } from "next-auth/react"; 
+import { signOut } from "next-auth/react";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import LogoutIcon from "@mui/icons-material/Logout";
+import Image from "next/image";
 
 function Navbar() {
   const navbarStyle = {
@@ -20,7 +21,7 @@ function Navbar() {
 
   const handleSignOut = () => {
     signOut({
-      callbackUrl: '/login', // Redirect to login page after sign-out
+      callbackUrl: "/login", // Redirect to login page after sign-out
     });
   };
 
@@ -69,15 +70,16 @@ function Navbar() {
       {/* Left Side - Logo and Links */}
       <div style={leftNavStyle}>
         <div style={reactFlowTextStyle}>
-          <img
+          {/* <img
             src="/assets/removebg.png"
             alt="React Flow"
+            width={120} // Set the width you want
+            height={60} // Set the height you want
             style={{
-              height: "60px",
               objectFit: "contain",
               marginTop: "10px",
             }}
-          />
+          /> */}
         </div>
         <ul style={navLinksStyle}>
           <li
