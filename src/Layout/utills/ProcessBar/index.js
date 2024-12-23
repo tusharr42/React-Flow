@@ -11,7 +11,7 @@ import RoundaboutRightIcon from "@mui/icons-material/RoundaboutRight";
 import EqualizerIcon from "@mui/icons-material/Equalizer";
 import AppsIcon from "@mui/icons-material/Apps";
 import AddRoadIcon from "@mui/icons-material/AddRoad";
-import TabsPage from "..";
+import TabBar from "../tabBar/index";
 import { red } from "@mui/material/colors";
 
 export default function ProcessBox() {
@@ -194,7 +194,7 @@ export default function ProcessBox() {
             flexGrow: 1,
           }}
         >
-          {showTabs && <TabsPage />}
+          {showTabs && <TabBar />}
         </Box>
       </Box>
     </>

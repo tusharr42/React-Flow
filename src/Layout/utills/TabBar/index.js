@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import {
   Card,
@@ -9,15 +10,10 @@ import {
   List,
   ListItem,
   ListItemText,
-  ListItemIcon, // Import ListItemIcon for positioning the icon
+  ListItemIcon,
 } from "@mui/material";
-import MyLocationIcon from "@mui/icons-material/MyLocation";
-import AddIcon from "@mui/icons-material/Add";
-import MessageIcon from "@mui/icons-material/Message";
-import NotificationAddIcon from "@mui/icons-material/NotificationAdd";
-import TerminalIcon from "@mui/icons-material/Terminal";
 
-function TabsPage() {
+function TabBar() {
   const [tabValue, setTabValue] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -34,6 +30,12 @@ function TabsPage() {
   // Reusable TabItem component
   const TabItem = ({ label }) => (
     <ListItem
+      draggable
+      onDragStart={(e) => {
+        e.dataTransfer.setData("application/Reactflow", label); // Pass the label as data
+
+        e.dataTransfer.effectAllowed = "move";
+      }}
       sx={{
         padding: "8px",
         cursor: "pointer",
@@ -215,4 +217,4 @@ function TabsPage() {
   );
 }
 
-export default TabsPage;
+export default TabBar;
