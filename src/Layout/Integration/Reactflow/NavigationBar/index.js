@@ -5,10 +5,9 @@ import { AppBar, Toolbar, Box, IconButton, Typography } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import ProcessBox from "@/Layout/utills/innerDashboardRows";
-import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
+import SettingsSuggestIcon from "@mui/icons-material/SettingsSuggest";
 
-
-function NavBar() {
+function NavigationBar() {
   return (
     <AppBar
       position="static"
@@ -16,6 +15,10 @@ function NavBar() {
         backgroundColor: "#ffffff",
         boxShadow: "none",
         borderBottom: "1px solid #ddd",
+        position: "fixed",
+        background: "white",
+        width: "-webkit-fill-available",
+        zIndex: "100",
       }}
     >
       <Toolbar
@@ -40,16 +43,6 @@ function NavBar() {
         </Box>
       </Toolbar>
     </AppBar>
-  );
-}
-
-function NavigationBar() {
-  return (
-    <Box>
-      <NavBar />
-      <ProcessBox/>
-    </Box>
-    
   );
 }
 

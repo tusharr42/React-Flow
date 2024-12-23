@@ -20,7 +20,9 @@ export default function ProcessBox() {
           justifyContent: "space-between",
           alignItems: "center",
           padding: 2,
-          width: "100%",
+          position: "fixed",
+          top: "154px",
+          width: "-webkit-fill-available",
         }}
       >
         <Box
@@ -31,6 +33,7 @@ export default function ProcessBox() {
             border: "1px solid #ccc",
             flexGrow: 1,
             justifyContent: "space-between",
+            background: "white",
           }}
         >
           <SettingsSuggestIcon />
@@ -56,6 +59,7 @@ export default function ProcessBox() {
             border: "1px solid #ccc",
             width: "15%",
             justifyContent: "center",
+            background: "white",
           }}
         >
           <LocalDrinkIcon />
@@ -72,7 +76,10 @@ export default function ProcessBox() {
           }}
         >
           <Stack spacing={1} direction="row">
-            <Button sx={{ marginRight: 2, padding: 1 }} variant="outlined">
+            <Button
+              sx={{ marginRight: 2, padding: 1, background: "white" }}
+              variant="outlined"
+            >
               Save & Close
             </Button>
             <Button
@@ -102,6 +109,8 @@ export default function ProcessBox() {
             padding: 2,
             gap: 2,
             width: "8%", // You can adjust the width as needed
+            position: "absolute",
+            top: "219px",
           }}
         >
           {/* Add clickable icons with rounded borders */}
@@ -173,7 +182,7 @@ export default function ProcessBox() {
           }}
         >
           <TabsPage />
-          <Flow/>
+          <Flow />
         </Box>
       </Box>
     </>

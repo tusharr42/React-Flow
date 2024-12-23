@@ -53,7 +53,6 @@ const HomePage = () => {
           src="/assets/new6.png"
           style={{
             width: "100%",
-            height: "100%",
             objectFit: "cover",
             zIndex: -1,
           }}

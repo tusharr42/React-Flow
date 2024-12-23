@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 import {
   ReactFlow,
-  Controls,
+  // Controls,
   Background,
   applyNodeChanges,
   applyEdgeChanges,
@@ -50,11 +50,11 @@ function Flow() {
         fitView
       >
         <Background />
-        <Controls />
-        {/* <MiniMap /> */}
+        {/* <Controls /> */}
       </ReactFlow>
     </div>
   );
 }
  
 export default Flow;
+ 

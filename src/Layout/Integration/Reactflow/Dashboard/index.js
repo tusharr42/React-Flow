@@ -1,12 +1,14 @@
-'use client';
-import React, { useState } from 'react';
-import PrimaryNavBar from '../../../Global/PrimaryNavbar';
-import SecondaryNavBar from '../../../Global/SecondaryNavbar';
-import Sidebar from '../../../Global/Sidebar';
-import Footer from '../../../Global/Footer';
-import ComponentsPanel from '../../../Global/ComponentsPannel';// Corrected the import name
-import NavigationBar from '../NavigationBar';
-import Flow from '../Flow';
+"use client";
+import React, { useState } from "react";
+import PrimaryNavBar from "../../../Global/PrimaryNavbar";
+import SecondaryNavBar from "../../../Global/SecondaryNavbar";
+import Sidebar from "../../../Global/Sidebar";
+import Footer from "../../../Global/Footer";
+import ComponentsPanel from "../../../Global/ComponentsPannel"; // Corrected the import name
+import NavigationBar from "../NavigationBar";
+import Flow from "../Flow";
+import ProcessBox from "@/Layout/utills/innerDashboardRows";
+import TabsPage from "@/Layout/utills";
 
 const DashboardInner = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true); // State to manage sidebar open/close
@@ -35,7 +37,7 @@ const DashboardInner = () => {
   const contentStyle = {
     flex: 1,
     padding: "0px",
-    overflow: "auto",
+    // overflow: "auto",
     backgroundColor: "#f4f4f4",
     marginBottom: "40px",
   };
@@ -62,10 +64,14 @@ const DashboardInner = () => {
           </div>
 
           {/* Replacing the old content with DashboardInterface */}
-          { <div style={contentStyle}>
-            <NavigationBar/>
-            <Flow />
-          </div> }
+          {
+            <div style={contentStyle}>
+           
+              <NavigationBar />
+              <Flow />
+              <ProcessBox />
+            </div>
+          }
         </div>
       </div>
       <Footer />
