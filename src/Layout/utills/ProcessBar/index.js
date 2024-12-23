@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Typography, Grid, IconButton } from "@mui/material";
+import { Box, Typography, TextField, Grid, IconButton } from "@mui/material";
 import SettingsSuggestIcon from "@mui/icons-material/SettingsSuggest";
 import InfoIcon from "@mui/icons-material/Info";
 import FolderCopyIcon from "@mui/icons-material/FolderCopy";
@@ -43,16 +43,16 @@ export default function ProcessBox() {
             border: "1px solid #ccc",
             flexGrow: 1,
             justifyContent: "space-between",
+            height: "43px",
             background: "white",
           }}
         >
           <SettingsSuggestIcon />
-          <Typography
-            variant="body1"
-            sx={{ fontWeight: "bold", flex: 1, marginLeft: "10px" }}
-          >
-            New Process
-          </Typography>
+          <TextField
+            id="outlined-size-small"
+            size="small"
+            sx={{ width: "400px" }}
+          />
           <Typography variant="body1" sx={{ fontWeight: "normal" }}>
             Process
           </Typography>
