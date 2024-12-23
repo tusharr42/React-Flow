@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Typography, Grid, IconButton } from "@mui/material";
 import SettingsSuggestIcon from "@mui/icons-material/SettingsSuggest";
 import InfoIcon from "@mui/icons-material/Info";
@@ -8,11 +8,20 @@ import LocalDrinkIcon from "@mui/icons-material/LocalDrink";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import RoundaboutRightIcon from "@mui/icons-material/RoundaboutRight";
+import EqualizerIcon from "@mui/icons-material/Equalizer";
+import AppsIcon from "@mui/icons-material/Apps";
 import AddRoadIcon from "@mui/icons-material/AddRoad";
 import TabsPage from "..";
 import { red } from "@mui/material/colors";
 
 export default function ProcessBox() {
+  const [showTabs, setShowTabs] = useState(false);
+  const [closeTabs, setCloseTabs] = useState(true);
+
+  const handleClick = () => {
+    setShowTabs((prevState) => !prevState);
+  };
+
   return (
     <>
       <Box
@@ -34,7 +43,7 @@ export default function ProcessBox() {
             border: "1px solid #ccc",
             flexGrow: 1,
             justifyContent: "space-between",
-            background: "white"
+            background: "white",
           }}
         >
           <SettingsSuggestIcon />
@@ -58,9 +67,11 @@ export default function ProcessBox() {
             alignItems: "center",
             padding: 1,
             border: "1px solid #ccc",
-            width: "15%",
+            width: "9%",
             justifyContent: "center",
-            background: "white"
+            background: "white",
+            marginLeft: "21px",
+            marginRight: "15px",
           }}
         >
           <LocalDrinkIcon />
@@ -77,7 +88,10 @@ export default function ProcessBox() {
           }}
         >
           <Stack spacing={1} direction="row">
-            <Button sx={{ marginRight: 2, padding: 1, background:"white" }} variant="outlined">
+            <Button
+              sx={{ marginRight: 2, padding: 1, background: "white" }}
+              variant="outlined"
+            >
               Save & Close
             </Button>
             <Button
@@ -122,6 +136,7 @@ export default function ProcessBox() {
                 backgroundColor: "#f0f0f0",
               },
             }}
+            onClick={handleClick}
           >
             <RoundaboutRightIcon />
           </IconButton>
@@ -137,7 +152,7 @@ export default function ProcessBox() {
               },
             }}
           >
-            <SettingsSuggestIcon />
+            <EqualizerIcon />
           </IconButton>
 
           <IconButton
@@ -151,7 +166,7 @@ export default function ProcessBox() {
               },
             }}
           >
-            <InfoIcon />
+            <AppsIcon />
           </IconButton>
 
           <IconButton
@@ -179,7 +194,7 @@ export default function ProcessBox() {
             flexGrow: 1,
           }}
         >
-          <TabsPage />
+          {showTabs && <TabsPage />}
         </Box>
       </Box>
     </>

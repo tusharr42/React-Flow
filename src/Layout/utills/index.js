@@ -172,7 +172,7 @@ function TabsPage() {
         marginBottom: 3,
         position: "absolute",
         top: "228px",
-        left: "450px",
+        marginLeft: "80px",
       }}
     >
       <CardContent>

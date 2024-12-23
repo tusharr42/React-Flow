@@ -7,7 +7,7 @@ import Footer from "../../../Global/Footer";
 import ComponentsPanel from "../../../Global/ComponentsPannel"; // Corrected the import name
 import NavigationBar from "../NavigationBar";
 import Flow from "../Flow";
-import ProcessBox from "@/Layout/utills/innerDashboardRows";
+import ProcessBox from "@/Layout/utills/ProcessBar";
 import TabsPage from "@/Layout/utills";
 
 const DashboardInner = () => {

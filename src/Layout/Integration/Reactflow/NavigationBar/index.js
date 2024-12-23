@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { AppBar, Toolbar, Box, IconButton, Typography } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import ProcessBox from "@/Layout/utills/innerDashboardRows";
+import ProcessBox from "@/Layout/utills/ProcessBar";
 import SettingsSuggestIcon from "@mui/icons-material/SettingsSuggest";
 
 function NavigationBar() {
