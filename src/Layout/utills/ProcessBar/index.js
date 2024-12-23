@@ -31,7 +31,7 @@ export default function ProcessBox() {
           alignItems: "center",
           padding: 2,
           position: "fixed",
-          top: "154px",
+          top: "200px",
           width: "-webkit-fill-available",
         }}
       >
@@ -122,7 +122,7 @@ export default function ProcessBox() {
             gap: 2,
             width: "8%", // You can adjust the width as needed
             position: "absolute",
-            top: "219px",
+            top: "263px",
           }}
         >
           {/* Add clickable icons with rounded borders */}
