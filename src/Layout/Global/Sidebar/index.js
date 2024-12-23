@@ -4,9 +4,11 @@ import { IconButton, Tooltip, Typography } from '@mui/material';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import LayersIcon from '@mui/icons-material/Layers';
+import ComponentsPanel from '../ComponentsPannel'; // Import the ComponentsPanel
 
 const Sidebar = () => {
   const [isClose, setIsClose] = useState(true); // Sidebar starts closed
+  const [isComponentsPanelOpen, setIsComponentsPanelOpen] = useState(false); // Components panel starts closed
 
   // On component mount, check local storage
   useEffect(() => {
@@ -21,6 +23,15 @@ const Sidebar = () => {
     const newState = !isClose;
     setIsClose(newState);
     localStorage.setItem('sidebarState', JSON.stringify(newState)); // Save state
+  };
+
+  // Toggle Components Panel and ensure sidebar is open
+  const toggleComponentsPanel = () => {
+    if (isClose) {
+      setIsClose(false); // Open sidebar if it is closed
+      localStorage.setItem('sidebarState', JSON.stringify(false)); // Save state
+    }
+    setIsComponentsPanelOpen(!isComponentsPanelOpen);
   };
 
   const sidebarStyle = {
@@ -101,7 +112,7 @@ const Sidebar = () => {
         </div>
 
         {/* Component Explorer */}
-        <div style={itemStyle}>
+        <div style={itemStyle} onClick={toggleComponentsPanel}>
           <Tooltip title="Component Explorer" placement="right">
             <IconButton>
               <LayersIcon fontSize="small" />
@@ -115,7 +126,6 @@ const Sidebar = () => {
       <div style={closeButtonStyle} onClick={toggleSidebar}>
         <Tooltip title={isClose ? 'Expand' : 'Collapse'} placement="right">
           <IconButton>
-            {/* Dynamically show double-chevron text */}
             <Typography style={chevronStyle}>
               {isClose ? '»' : '«'}
             </Typography>
@@ -123,6 +133,9 @@ const Sidebar = () => {
         </Tooltip>
         {!isClose && <Typography>Close Sidebar</Typography>}
       </div>
+
+      {/* Render ComponentsPanel if isComponentsPanelOpen is true */}
+      {isComponentsPanelOpen && <ComponentsPanel />}
     </div>
   );
 };
