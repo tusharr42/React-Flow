@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Typography, Grid, IconButton } from "@mui/material";
 import SettingsSuggestIcon from "@mui/icons-material/SettingsSuggest";
 import InfoIcon from "@mui/icons-material/Info";
@@ -8,10 +8,20 @@ import LocalDrinkIcon from "@mui/icons-material/LocalDrink";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import RoundaboutRightIcon from "@mui/icons-material/RoundaboutRight";
-import TabsPage from "..";
-import Flow from "@/Layout/Integration/Reactflow/Flow";
+import EqualizerIcon from "@mui/icons-material/Equalizer";
+import AppsIcon from "@mui/icons-material/Apps";
+import AddRoadIcon from "@mui/icons-material/AddRoad";
+import TabsPage from "../TabBar";
+import { red } from "@mui/material/colors";
 
 export default function ProcessBox() {
+  const [showTabs, setShowTabs] = useState(false);
+  const [closeTabs, setCloseTabs] = useState(true);
+
+  const handleClick = () => {
+    setShowTabs((prevState) => !prevState);
+  };
+
   return (
     <>
       <Box
@@ -57,9 +67,11 @@ export default function ProcessBox() {
             alignItems: "center",
             padding: 1,
             border: "1px solid #ccc",
-            width: "15%",
+            width: "9%",
             justifyContent: "center",
             background: "white",
+            marginLeft: "21px",
+            marginRight: "15px",
           }}
         >
           <LocalDrinkIcon />
@@ -124,6 +136,7 @@ export default function ProcessBox() {
                 backgroundColor: "#f0f0f0",
               },
             }}
+            onClick={handleClick}
           >
             <RoundaboutRightIcon />
           </IconButton>
@@ -139,7 +152,7 @@ export default function ProcessBox() {
               },
             }}
           >
-            <SettingsSuggestIcon />
+            <EqualizerIcon />
           </IconButton>
 
           <IconButton
@@ -153,7 +166,7 @@ export default function ProcessBox() {
               },
             }}
           >
-            <InfoIcon />
+            <AppsIcon />
           </IconButton>
 
           <IconButton
@@ -181,8 +194,7 @@ export default function ProcessBox() {
             flexGrow: 1,
           }}
         >
-          <TabsPage />
-          <Flow />
+          {showTabs && <TabsPage />}
         </Box>
       </Box>
     </>
