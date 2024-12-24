@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Typography, Grid, IconButton } from "@mui/material";
+import { Box, Typography, TextField, Grid, IconButton } from "@mui/material";
 import SettingsSuggestIcon from "@mui/icons-material/SettingsSuggest";
 import InfoIcon from "@mui/icons-material/Info";
 import FolderCopyIcon from "@mui/icons-material/FolderCopy";
@@ -11,12 +11,26 @@ import RoundaboutRightIcon from "@mui/icons-material/RoundaboutRight";
 import EqualizerIcon from "@mui/icons-material/Equalizer";
 import AppsIcon from "@mui/icons-material/Apps";
 import AddRoadIcon from "@mui/icons-material/AddRoad";
-import TabsPage from "../TabBar";
+import TabBar from "../tabBar/index";
 import { red } from "@mui/material/colors";
 
 export default function ProcessBox() {
   const [showTabs, setShowTabs] = useState(false);
   const [closeTabs, setCloseTabs] = useState(true);
+  const [name, setName] = useState(""); // State to store the value of TextField
+  const [isEditing, setIsEditing] = useState(false); // Manage editing state
+
+  const handleBlur = () => {
+    setIsEditing(false); // Save automatically when the field loses focus
+  };
+
+  const handleFocus = () => {
+    setIsEditing(true); // Switch to editing mode when the field is focused
+  };
+
+  const handleChange = (event) => {
+    setName(event.target.value); // Update the name as the user types
+  };
 
   const handleClick = () => {
     setShowTabs((prevState) => !prevState);
@@ -31,7 +45,7 @@ export default function ProcessBox() {
           alignItems: "center",
           padding: 2,
           position: "fixed",
-          top: "154px",
+          top: "200px",
           width: "-webkit-fill-available",
         }}
       >
@@ -43,16 +57,30 @@ export default function ProcessBox() {
             border: "1px solid #ccc",
             flexGrow: 1,
             justifyContent: "space-between",
+            height: "43px",
             background: "white",
           }}
         >
           <SettingsSuggestIcon />
-          <Typography
-            variant="body1"
-            sx={{ fontWeight: "bold", flex: 1, marginLeft: "10px" }}
-          >
-            New Process
-          </Typography>
+          {isEditing ? (
+            <TextField
+              id="outlined-size-small"
+              size="small"
+              sx={{ width: "400px", fontWeight: "bold" }}
+              value={name}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              onFocus={handleFocus}
+            />
+          ) : (
+            <Typography
+              variant="body1"
+              sx={{ fontWeight: "bold", cursor: "pointer", width: "400px" }}
+              onClick={() => setIsEditing(true)}
+            >
+              {name || "Enter name"}
+            </Typography>
+          )}
           <Typography variant="body1" sx={{ fontWeight: "normal" }}>
             Process
           </Typography>
@@ -122,7 +150,7 @@ export default function ProcessBox() {
             gap: 2,
             width: "8%", // You can adjust the width as needed
             position: "absolute",
-            top: "219px",
+            top: "263px",
           }}
         >
           {/* Add clickable icons with rounded borders */}
@@ -194,7 +222,7 @@ export default function ProcessBox() {
             flexGrow: 1,
           }}
         >
-          {showTabs && <TabsPage />}
+          {showTabs && <TabBar />}
         </Box>
       </Box>
     </>

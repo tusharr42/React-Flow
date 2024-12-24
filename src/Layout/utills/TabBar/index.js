@@ -78,8 +78,8 @@ function TabBar() {
         boxShadow: 1,
         marginBottom: 3,
         position: "absolute",
-        top: "228px",
-        marginLeft: "80px",
+        top: "275px",
+        marginLeft: "70px",
       }}
     >
       <CardContent>

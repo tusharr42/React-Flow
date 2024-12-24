@@ -8,7 +8,7 @@ import ComponentsPanel from "../../../Global/ComponentsPannel"; // Corrected the
 import NavigationBar from "../NavigationBar";
 import Flow from "../Flow";
 import ProcessBox from "@/Layout/utills/ProcessBar";
-import TabsPage from "@/Layout/utills/TabBar";
+import TabBar from "../../../utills/tabBar";
 
 const DashboardInner = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true); // State to manage sidebar open/close

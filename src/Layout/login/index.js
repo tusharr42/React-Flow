@@ -4,6 +4,7 @@ import { signIn } from "next-auth/react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
+import { styled } from "@mui/system";
 
 import "./login.css";
 import { useState } from "react";
@@ -21,6 +22,10 @@ const LoginPage = () => {
   const router = useRouter();
   const handleRedirect = () => {
     router.push("/signup");
+  };
+
+  const handleChanged = () => {
+    router.push("/"); // Navigate using router.push
   };
 
   // Handle input changes
@@ -98,13 +103,39 @@ const LoginPage = () => {
 
   return (
     <div className="container">
+      <img
+        src="/assets/removebg.png"
+        alt="React Flow"
+        style={{ height: "60px", marginBottom: "55%" }}
+        onClick={handleChanged}
+      ></img>
+
       <div className="login-section">
         <h2 className="title">Sign in to Account</h2>
         <div className="social-icons">
-          <button className="social-btn">f</button>
-          <button className="social-btn">in</button>
-          <button className="social-btn">G</button>
+          <a
+            href="https://www.facebook.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <button className="social-btn">f</button>
+          </a>
+          <a
+            href="https://www.linkedin.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <button className="social-btn">in</button>
+          </a>
+          <a
+            href="mailto:example@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <button className="social-btn">G</button>
+          </a>
         </div>
+
         <p className="text">or use your email account</p>
         <form className="form" onSubmit={handleSubmit}>
           {/* Email Input */}
@@ -145,11 +176,7 @@ const LoginPage = () => {
 
           {/* Submit Button */}
           <button type="submit" className="sign-in-btn" disabled={loading}>
-            {loading ? (
-              <div className="spinner"></div> 
-            ) : (
-              "Sign In"
-            )}
+            {loading ? <div className="spinner"></div> : "Sign In"}
           </button>
         </form>
       </div>

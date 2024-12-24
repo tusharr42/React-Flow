@@ -5,8 +5,8 @@ const Footer = () => {
   return (
     <Box
       sx={{
-        backgroundColor: "#323295", // Blue background
-        color: "white", // White text color
+        backgroundColor: "#323295", 
+        color: "white", 
         padding: "20px 0",
         position: "relative",
         bottom: 0,
@@ -18,99 +18,129 @@ const Footer = () => {
         {/* Platform Section */}
         <Grid item xs={12} sm={3}>
           <Typography variant="h6">Platform</Typography>
-          <Link href="#" color="inherit" display="block">
+          <br></br>
+          <Link href="/" color="inherit" display="block" sx={{ textDecoration: "none" }}>
             Boomi Enterprise Platform
           </Link>
-          <Link href="#" color="inherit" display="block">
+          <br></br>
+          <Link href="/" color="inherit" display="block" sx={{ textDecoration: "none" }}>
             Why Boomi
           </Link>
-          <Link href="#" color="inherit" display="block">
+          <br></br>
+          <Link href="/" color="inherit" display="block" sx={{ textDecoration: "none" }}>
             iPaaS pricing & editions
           </Link>
-          <Link href="#" color="inherit" display="block">
+          <br></br>
+          <Link href="/" color="inherit" display="block" sx={{ textDecoration: "none" }}>
             Compliance
           </Link>
-          <Link href="#" color="inherit" display="block">
+          <br></br>
+          <Link href="/" color="inherit" display="block" sx={{ textDecoration: "none" }}>
             What is iPaaS?
           </Link>
+          <br></br>
         </Grid>
 
         {/* Solutions Section */}
         <Grid item xs={12} sm={3}>
           <Typography variant="h6">Solutions</Typography>
-          <Link href="/" color="inherit" display="block">
+          <br></br>
+          <Link href="/" color="inherit" display="block" sx={{ textDecoration: "none" }}>
             Manufacturing
           </Link>
-          <Link href="/" color="inherit" display="block">
+          <br></br>
+          <Link href="/" color="inherit" display="block" sx={{ textDecoration: "none" }}>
             Healthcare & Life Sciences
           </Link>
-          <Link href="/" color="inherit" display="block">
+          <br></br>
+          <Link href="/" color="inherit" display="block" sx={{ textDecoration: "none" }}>
             Retail
           </Link>
-          <Link href="/" color="inherit" display="block">
+          <br></br>
+          <Link href="/" color="inherit" display="block" sx={{ textDecoration: "none" }}>
             Financial Services
           </Link>
-          <Link href="/" color="inherit" display="block">
+          <br></br>
+          <Link href="/" color="inherit" display="block" sx={{ textDecoration: "none" }}>
             Higher Education
           </Link>
-          <Link href="/" color="inherit" display="block">
+          <br></br>
+          <Link href="/" color="inherit" display="block" sx={{ textDecoration: "none" }}>
             Public Sector
           </Link>
-          <Link href="/" color="inherit" display="block">
+          <br></br>
+          <Link href="/" color="inherit" display="block" sx={{ textDecoration: "none" }}>
             Software Providers
           </Link>
+          <br></br>
         </Grid>
 
         {/* Connectors Section */}
         <Grid item xs={12} sm={3}>
           <Typography variant="h6">Connectors</Typography>
-          <Link href="/" color="inherit" display="block">
+          <br></br>
+          <Link href="/" color="inherit" display="block" sx={{ textDecoration: "none" }}>
             Salesforce
           </Link>
-          <Link href="/" color="inherit" display="block">
+          <br></br>
+          <Link href="/" color="inherit" display="block" sx={{ textDecoration: "none" }}>
             SAP
           </Link>
-          <Link href="/" color="inherit" display="block">
+          <br></br>
+          <Link href="/" color="inherit" display="block" sx={{ textDecoration: "none" }}>
             NetSuite
           </Link>
-          <Link href="/" color="inherit" display="block">
+          <br></br>
+          <Link href="/" color="inherit" display="block" sx={{ textDecoration: "none" }}>
             Workday
           </Link>
-          <Link href="/" color="inherit" display="block">
+          <br></br>
+          <Link href="/" color="inherit" display="block" sx={{ textDecoration: "none" }}>
             ServiceNow
           </Link>
-          <Link href="/" color="inherit" display="block">
+          <br></br>
+          <Link href="/" color="inherit" display="block" sx={{ textDecoration: "none" }}>
             AWS
           </Link>
-          <Link href="/" color="inherit" display="block">
+          <br></br>
+          <Link href="/" color="inherit" display="block" sx={{ textDecoration: "none" }}>
             All Connectors
           </Link>
+          <br></br>
         </Grid>
 
         {/* Resources Section */}
         <Grid item xs={12} sm={3}>
           <Typography variant="h6">Resources</Typography>
-          <Link href="/" color="inherit" display="block">
+          <br></br>
+          <Link href="/" color="inherit" display="block" sx={{ textDecoration: "none" }}>
             Events & Webinars
           </Link>
-          <Link href="/" color="inherit" display="block">
+          <br></br>
+          <Link href="/" color="inherit" display="block" sx={{ textDecoration: "none" }}>
             Blog
           </Link>
-          <Link href="/" color="inherit" display="block">
+          <br></br>
+          <Link href="/" color="inherit" display="block" sx={{ textDecoration: "none" }}>
             Case Studies
           </Link>
-          <Link href="/" color="inherit" display="block">
+          <br></br>
+          <Link href="/" color="inherit" display="block" sx={{ textDecoration: "none" }}>
             Training
           </Link>
-          <Link href="/" color="inherit" display="block">
+          <br></br>
+          <Link href="/" color="inherit" display="block" sx={{ textDecoration: "none" }}>
             Community
           </Link>
-          <Link href="/" color="inherit" display="block">
+          <br></br>
+          <Link href="/" color="inherit" display="block" sx={{ textDecoration: "none" }}>
             Documentation
           </Link>
-          <Link href="/" color="inherit" display="block">
+          <br></br>
+          <Link href="/" color="inherit" display="block" sx={{ textDecoration: "none" }}>
             All Resources
           </Link>
+          <br></br>
         </Grid>
       </Grid>
 
