@@ -1,5 +1,4 @@
 "use server";
-
 import nextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import User from "../../Model/user.model";
@@ -53,21 +52,17 @@ const authOptions = {
         const { firstName, lastName, email, companyName, jobTitle, phoneNumber, country } = session.user;
         return { ...token, firstName, lastName, email, companyName, jobTitle, phoneNumber, country };
       }
+      // console.log("token", token);
 
       return token;
     },
     async session({ session, token }) {
       if (token) {
         session.user = {
-          firstName: token.firstName,
-          lastName: token.lastName,
-          email: token.email,
-          companyName: token.companyName,
-          jobTitle: token.jobTitle,
-          phoneNumber: token.phoneNumber,
-          country: token.country,
+          ...token
         };
       }
+      // console.log("session", session);
       return session;
     },
   },

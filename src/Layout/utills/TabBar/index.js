@@ -16,6 +16,11 @@ function TabBar() {
   const [tabValue, setTabValue] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
 
+  const onDragStart = (event, nodeType) => {
+    event.dataTransfer.setData("application/reactflow", nodeType);
+    event.dataTransfer.effectAllowed = "move";
+  };
+
   // Handle Tab change
   const handleTabChange = (event, newValue) => {
     setTabValue(newValue);
@@ -29,12 +34,6 @@ function TabBar() {
   // Reusable TabItem component
   const TabItem = ({ label }) => (
     <ListItem
-      draggable
-      onDragStart={(e) => {
-        e.dataTransfer.setData("application/reactflow", label); // Pass the label as data
-
-        e.dataTransfer.effectAllowed = "move";
-      }}
       sx={{
         padding: "8px",
         cursor: "pointer",
@@ -95,6 +94,8 @@ function TabBar() {
       )}
       {label === "MongoDb" && (
         <ListItemIcon
+        onDragStart={(event) => onDragStart(event, "MongoDbConnectorNode")}
+        draggable
           sx={{ minWidth: 30, display: "flex", alignItems: "center" }}
         >
           <img

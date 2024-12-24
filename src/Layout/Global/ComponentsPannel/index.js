@@ -1,8 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import SearchIcon from '@mui/icons-material/Search';
 import FilterListIcon from '@mui/icons-material/FilterList';
+import FolderIcon from '@mui/icons-material/Folder';
 
 function ComponentsPanel() {
+  const [companyNames, setCompanyNames] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Fetch company names from the API
+    const fetchCompanyNames = async () => {
+      try {
+        const response = await fetch('/api/componentsbar');
+        if (!response.ok) {
+          const errorDetails = await response.text();
+          throw new Error(`Network response was not ok: ${response.status} - ${response.statusText}. Details: ${errorDetails}`);
+        }
+        const data = await response.json();
+        setCompanyNames([...new Set(data)]); // Ensure unique company names
+      } catch (error) {
+        console.error('Error fetching company names:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCompanyNames();
+  }, []);
+
   return (
     <div style={{ width: "290px", border: "1px solid #ddd", padding: "10px" }}>
       {/* Container for Search Input and Filter Button */}
@@ -71,16 +96,22 @@ function ComponentsPanel() {
 
       {/* Folder Structure */}
       <div>
-        {/* Root Folder */}
-        
-        {/* Child Items */}
-        <div style={{ paddingLeft: "20px" }}>
-          {/* File */}
-         
-
-          {/* Sub-folder */}
-         
-        </div>
+        {loading ? (
+          <p>Loading company names...</p>
+        ) : (
+          companyNames.length > 0 ? (
+            <ul>
+              {companyNames.map((company, index) => (
+                <li key={index} style={{ display: "flex", alignItems: "center", marginBottom: "5px", fontSize: "30px" }}>
+                  <FolderIcon style={{ marginRight: "8px", color: "#0078D4" }} />
+                  {company}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>No company names found</p>
+          )
+        )}
       </div>
     </div>
   );

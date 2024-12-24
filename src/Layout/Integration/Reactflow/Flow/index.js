@@ -5,12 +5,20 @@ import {
   applyNodeChanges,
   applyEdgeChanges,
   addEdge,
+  useReactFlow,
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
+import MongoDbConnectorNode from "../Custom_Nodes/Connector_Nodes/MongoDbconnectorNode"
 
-function Flow() {
+const nodeTypes = {
+  MongoDbConnectorNode: MongoDbConnectorNode,
+};
+
+const Flow = () => {
   const [nodes, setNodes] = useState([]);
   const [edges, setEdges] = useState([]);
+  const { screenToFlowPosition, getViewport, setViewport } = useReactFlow();
+
   const onNodesChange = useCallback(
     (changes) => setNodes((nds) => applyNodeChanges(changes, nds)),
     []
@@ -29,24 +37,30 @@ function Flow() {
   const onDrop = useCallback(
     (event) => {
       event.preventDefault();
-      const label = event.dataTransfer.getData('application/reactflow');
-      const reactFlowBounds = event.target.getBoundingClientRect();
+      const type = event.dataTransfer.getData("application/reactflow");
 
-      const position = {
-        x: event.clientX - reactFlowBounds.left,
-        y: event.clientY - reactFlowBounds.top,
-      };
+      if (!type) return;
 
+      const position = screenToFlowPosition({
+        x: event.clientX,
+        y: event.clientY,
+      });
+
+      const newNodeId = getId();
       const newNode = {
-        id: `${label}-${nodes.length + 1}`,
-        type: 'default',
+        id: newNodeId,
+        type,
         position,
-        data: { label },
+        data: {
+          id: newNodeId,
+          label: `${type}`,
+          value: "",
+        },
       };
 
       setNodes((nds) => nds.concat(newNode));
     },
-    [nodes]
+    [screenToFlowPosition, setNodes]
   );
 
   const onDragOver = (event) => {
@@ -57,13 +71,19 @@ function Flow() {
   return (
     <div style={{ height: '100%' }}>
       <ReactFlow
-        nodes={nodes}
+        nodes={nodes.map((node) => ({
+          ...node,
+          data: {
+            ...node.data,
+          },
+        }))}
         edges={edges}
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
         onDrop={onDrop}
         onDragOver={onDragOver}
+        nodeTypes={nodeTypes}
         fitView
       >
         <Background />
