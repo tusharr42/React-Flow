@@ -10,19 +10,19 @@ function ComponentsPanel() {
   useEffect(() => {
     // Fetch company names from the API
     const fetchCompanyNames = async () => {
-      try {
-        const response = await fetch('/api/componentsbar');
-        if (!response.ok) {
-          const errorDetails = await response.text();
-          throw new Error(`Network response was not ok: ${response.status} - ${response.statusText}. Details: ${errorDetails}`);
-        }
-        const data = await response.json();
-        setCompanyNames([...new Set(data)]); // Ensure unique company names
-      } catch (error) {
-        console.error('Error fetching company names:', error);
-      } finally {
-        setLoading(false);
-      }
+      // try {
+      //   const response = await fetch('/api/componentsbar');
+      //   if (!response.ok) {
+      //     const errorDetails = await response.text();
+      //     throw new Error(`Network response was not ok: ${response.status} - ${response.statusText}. Details: ${errorDetails}`);
+      //   }
+      //   const data = await response.json();
+      //   setCompanyNames([...new Set(data)]); // Ensure unique company names
+      // } catch (error) {
+      //   console.error('Error fetching company names:', error);
+      // } finally {
+      //   setLoading(false);
+      // }
     };
 
     fetchCompanyNames();

@@ -21,18 +21,15 @@ function TabBar() {
     event.dataTransfer.effectAllowed = "move";
   };
 
-  // Handle Tab change
   const handleTabChange = (event, newValue) => {
     setTabValue(newValue);
   };
 
-  // Handle search input change
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
   };
 
-  // Reusable TabItem component
-  const TabItem = ({ label }) => (
+  const TabItem = ({ label, nodeType }) => (
     <ListItem
       sx={{
         padding: "8px",
@@ -40,129 +37,37 @@ function TabBar() {
         transition: "background-color 0.3s ease",
         "&:hover": { backgroundColor: "#f0f0f0" },
       }}
+      onDragStart={(event) => onDragStart(event, nodeType)}
+      draggable
     >
-      {/* Check if the label is "Map" to add the icon */}
-      {label === "Map" && (
-        <ListItemIcon
-          sx={{ minWidth: 30, display: "flex", alignItems: "center" }}
-        >
-          <img
-            src="/assets/map.jpg"
-            style={{ width: "25px", height: "auto", marginRight: "8px" }}
-          />
-        </ListItemIcon>
-      )}
-      {label === "Set Property" && (
-        <ListItemIcon
-          sx={{ minWidth: 30, display: "flex", alignItems: "center" }}
-        >
-          <img
-            src="/assets/setproperty.png"
-            style={{ width: "25px", height: "auto", marginRight: "8px" }}
-          />
-        </ListItemIcon>
-      )}
-      {label === "Message" && (
-        <ListItemIcon
-          sx={{ minWidth: 30, display: "flex", alignItems: "center" }}
-        >
-          <img
-            src="/assets/message.png"
-            style={{ width: "25px", height: "auto", marginRight: "8px" }}
-          />
-        </ListItemIcon>
-      )}
-      {label === "Notify" && (
-        <ListItemIcon
-          sx={{ minWidth: 30, display: "flex", alignItems: "center" }}
-        >
-          <img
-            src="/assets/notify.png"
-            style={{ width: "25px", height: "auto", marginRight: "8px" }}
-          />
-        </ListItemIcon>
-      )}
-      {label === "Program Command" && (
-        <ListItemIcon
-          sx={{ minWidth: 30, display: "flex", alignItems: "center" }}
-        >
-          <img
-            src="/assets/program.png"
-            style={{ width: "25px", height: "auto", marginRight: "8px" }}
-          />
-        </ListItemIcon>
-      )}
-      {label === "MongoDb" && (
-        <ListItemIcon
-        onDragStart={(event) => onDragStart(event, "MongoDbConnectorNode")}
-        draggable
-          sx={{ minWidth: 30, display: "flex", alignItems: "center" }}
-        >
-          <img
-            src="/assets/mongodb.svg"
-            style={{ width: "28px", height: "auto", marginRight: "8px" }}
-          />
-        </ListItemIcon>
-      )}
-      {label === "SQL" && (
-        <ListItemIcon
-          sx={{ minWidth: 30, display: "flex", alignItems: "center" }}
-        >
-          <img
-            src="/assets/sql2.webp"
-            style={{ width: "25px", height: "auto", marginRight: "8px" }}
-          />
-        </ListItemIcon>
-      )}
-      {label === "Appwrite" && (
-        <ListItemIcon
-          sx={{ minWidth: 30, display: "flex", alignItems: "center" }}
-        >
-          <img
-            src="/assets/appwrite.png"
-            style={{ width: "25px", height: "auto", marginRight: "8px" }}
-          />
-        </ListItemIcon>
-      )}
-      {label === "Try and Catch" && (
-        <ListItemIcon
-          sx={{ minWidth: 30, display: "flex", alignItems: "center" }}
-        >
-          <img
-            src="/assets/try1.jpg"
-            style={{ width: "28px", height: "auto", marginRight: "8px" }}
-          />
-        </ListItemIcon>
-      )}
-      {label === "Start" && (
-        <ListItemIcon
-          sx={{ minWidth: 30, display: "flex", alignItems: "center" }}
-        >
-          <img
-            src="/assets/start.jpg"
-            style={{ width: "28px", height: "auto", marginRight: "8px" }}
-          />
-        </ListItemIcon>
-      )}
-      {label === "Stop" && (
-        <ListItemIcon
-          sx={{ minWidth: 30, display: "flex", alignItems: "center" }}
-        >
-          <img
-            src="/assets/stop.webp"
-            style={{ width: "28px", height: "auto", marginRight: "8px" }}
-          />
-        </ListItemIcon>
-      )}
+      <ListItemIcon sx={{ minWidth: 30, display: "flex", alignItems: "center" }}>
+        <img
+          src={`/assets/${label.toLowerCase().replace(" ", "")}.png`}
+          style={{ width: "25px", height: "auto", marginRight: "8px" }}
+        />
+      </ListItemIcon>
       <ListItemText primary={label} />
     </ListItem>
   );
 
-  // Content for each tab
   const tabContent = [
-    ["MongoDb", "SQL", "Appwrite"],
-    ["Map", "Set Property", "Message", "Notify", "Program Command"],
-    ["Try and Catch", "Start", "Stop"],
+    [
+      { label: "MongoDb", nodeType: "MongoDbConnectorNode" },
+      { label: "SQL", nodeType: "SQLConnectorNode" },
+      { label: "Appwrite", nodeType: "AppwriteConnectorNode" },
+    ],
+    [
+      { label: "Map", nodeType: "MapNode" },
+      { label: "Set Property", nodeType: "SetPropertyNode" },
+      { label: "Message", nodeType: "MessageNode" },
+      { label: "Notify", nodeType: "NotifyNode" },
+      { label: "Program Command", nodeType: "ProgramCommandNode" },
+    ],
+    [
+      { label: "Try Catch", nodeType: "TryCatchNode" },
+      { label: "Start", nodeType: "StartNode" },
+      { label: "Stop", nodeType: "StopNode" },
+    ],
   ];
 
   return (
@@ -178,7 +83,6 @@ function TabBar() {
       }}
     >
       <CardContent>
-        {/* Search Bar */}
         <TextField
           fullWidth
           label="Search all steps"
@@ -187,15 +91,11 @@ function TabBar() {
           onChange={handleSearchChange}
           sx={{ marginBottom: 2 }}
         />
-
-        {/* Tabs */}
         <Tabs value={tabValue} onChange={handleTabChange} centered>
           <Tab label="Connect" />
           <Tab label="Execute" />
           <Tab label="Logic" />
         </Tabs>
-
-        {/* Tab Content */}
         <Box
           sx={{
             marginTop: 1,
@@ -208,7 +108,7 @@ function TabBar() {
         >
           <List>
             {tabContent[tabValue].map((item, index) => (
-              <TabItem key={index} label={item} />
+              <TabItem key={index} label={item.label} nodeType={item.nodeType} />
             ))}
           </List>
         </Box>

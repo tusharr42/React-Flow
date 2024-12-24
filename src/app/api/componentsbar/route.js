@@ -1,12 +1,12 @@
 import { dbConnection } from '../dbconnection';
 import User from '../Model/user.model';
-// Example using next-auth for authentication
+import { getSession } from 'next-auth/react'; // Example using next-auth for authentication
 
 export async function GET(req) {
   await dbConnection();
 
   const session = await getSession({ req });
-  console.log("session", session)
+  console.log ("session",session)
   if (!session) {
     return new Response(JSON.stringify({ message: 'Unauthorized' }), { status: 401 });
   }

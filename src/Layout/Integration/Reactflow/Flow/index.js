@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback } from "react";
 import {
   ReactFlow,
   Background,
@@ -6,18 +6,23 @@ import {
   applyEdgeChanges,
   addEdge,
   useReactFlow,
-} from '@xyflow/react';
-import '@xyflow/react/dist/style.css';
-import MongoDbConnectorNode from "../Custom_Nodes/Connector_Nodes/MongoDbconnectorNode"
+} from "@xyflow/react";
+import "@xyflow/react/dist/style.css";
+import MongoDbconnectorNode from "../Custom_Nodes/Connector_Nodes/MongoDbconnectorNode";
 
 const nodeTypes = {
-  MongoDbConnectorNode: MongoDbConnectorNode,
+  MongoDbConnectorNode: MongoDbconnectorNode,
+  // SQLConnectorNode: SQLConnectorNode,
+  // AppwriteConnectorNode: AppwriteConnectorNode,
 };
+
+let id = 0;
+const getId = () => `node_${id++}`;
 
 const Flow = () => {
   const [nodes, setNodes] = useState([]);
   const [edges, setEdges] = useState([]);
-  const { screenToFlowPosition, getViewport, setViewport } = useReactFlow();
+  const { screenToFlowPosition } = useReactFlow();
 
   const onNodesChange = useCallback(
     (changes) => setNodes((nds) => applyNodeChanges(changes, nds)),
@@ -54,29 +59,23 @@ const Flow = () => {
         data: {
           id: newNodeId,
           label: `${type}`,
-          value: "",
         },
       };
 
       setNodes((nds) => nds.concat(newNode));
     },
-    [screenToFlowPosition, setNodes]
+    [screenToFlowPosition]
   );
 
   const onDragOver = (event) => {
     event.preventDefault();
-    event.dataTransfer.dropEffect = 'move';
+    event.dataTransfer.dropEffect = "move";
   };
 
   return (
-    <div style={{ height: '100%' }}>
+    <div style={{ height: "100%" }}>
       <ReactFlow
-        nodes={nodes.map((node) => ({
-          ...node,
-          data: {
-            ...node.data,
-          },
-        }))}
+        nodes={nodes}
         edges={edges}
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
@@ -90,6 +89,6 @@ const Flow = () => {
       </ReactFlow>
     </div>
   );
-}
+};
 
 export default Flow;

@@ -6,4 +6,4 @@ const MongoDbconnectorNode = () => {
   )
 }
 
-export default MongoDbconnectorNode;
+export default MongoDbconnectorNode;  
