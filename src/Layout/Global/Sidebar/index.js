@@ -4,9 +4,11 @@ import { IconButton, Tooltip, Typography } from '@mui/material';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import LayersIcon from '@mui/icons-material/Layers';
+import ComponentsPanel from '../ComponentsPannel'; // Ensure the path is correct
 
 const Sidebar = () => {
   const [isClose, setIsClose] = useState(true); // Sidebar starts closed
+  const [isComponentsPanelOpen, setIsComponentsPanelOpen] = useState(false); // Components panel starts closed
 
   // On component mount, check local storage
   useEffect(() => {
@@ -16,11 +18,16 @@ const Sidebar = () => {
     }
   }, []);
 
-  // Update local storage whenever state changes
+  // Toggle sidebar open/close
   const toggleSidebar = () => {
     const newState = !isClose;
     setIsClose(newState);
     localStorage.setItem('sidebarState', JSON.stringify(newState)); // Save state
+  };
+
+  // Toggle components panel visibility
+  const toggleComponentsPanel = () => {
+    setIsComponentsPanelOpen((prevState) => !prevState); // Toggle visibility
   };
 
   const sidebarStyle = {
@@ -78,51 +85,64 @@ const Sidebar = () => {
   };
 
   return (
-    <div style={sidebarStyle}>
-      <div style={iconContainer}>
-        {/* Create New */}
-        <div style={itemStyle}>
-          <Tooltip title="Create New" placement="right">
-            <IconButton>
-              <AddCircleOutlineIcon fontSize="small" />
-            </IconButton>
-          </Tooltip>
-          {!isClose && <Typography>Create New</Typography>}
+    <div style={{ display: 'flex' }}>
+      {/* Sidebar */}
+      <div style={sidebarStyle}>
+        <div style={iconContainer}>
+          {/* Create New */}
+          <div style={itemStyle}>
+            <Tooltip title="Create New" placement="right">
+              <IconButton>
+                <AddCircleOutlineIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+            {!isClose && <Typography>Create New</Typography>}
+          </div>
+
+          {/* Process Library */}
+          <div style={itemStyle}>
+            <Tooltip title="Process Library" placement="right">
+              <IconButton>
+                <MenuBookIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+            {!isClose && <Typography>Process Library</Typography>}
+          </div>
+
+          {/* Component Explorer */}
+          <div style={itemStyle} onClick={toggleComponentsPanel}>
+            <Tooltip title="Component Explorer" placement="right">
+              <IconButton>
+                <LayersIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+            {!isClose && <Typography>Component Explorer</Typography>}
+          </div>
         </div>
 
-        {/* Process Library */}
-        <div style={itemStyle}>
-          <Tooltip title="Process Library" placement="right">
+        {/* Open/Close Sidebar */}
+        <div style={closeButtonStyle} onClick={toggleSidebar}>
+          <Tooltip title={isClose ? 'Expand' : 'Collapse'} placement="right">
             <IconButton>
-              <MenuBookIcon fontSize="small" />
+              <Typography style={chevronStyle}>{isClose ? '»' : '«'}</Typography>
             </IconButton>
           </Tooltip>
-          {!isClose && <Typography>Process Library</Typography>}
-        </div>
-
-        {/* Component Explorer */}
-        <div style={itemStyle}>
-          <Tooltip title="Component Explorer" placement="right">
-            <IconButton>
-              <LayersIcon fontSize="small" />
-            </IconButton>
-          </Tooltip>
-          {!isClose && <Typography>Component Explorer</Typography>}
+          {!isClose && <Typography>Close Sidebar</Typography>}
         </div>
       </div>
 
-      {/* Open/Close Sidebar */}
-      <div style={closeButtonStyle} onClick={toggleSidebar}>
-        <Tooltip title={isClose ? 'Expand' : 'Collapse'} placement="right">
-          <IconButton>
-            {/* Dynamically show double-chevron text */}
-            <Typography style={chevronStyle}>
-              {isClose ? '»' : '«'}
-            </Typography>
-          </IconButton>
-        </Tooltip>
-        {!isClose && <Typography>Close Sidebar</Typography>}
-      </div>
+      {/* Conditionally Render ComponentsPanel */}
+      {isComponentsPanelOpen && (
+        <div
+          style={{
+            width: '290px',
+            border: '1px solid #ddd',
+            padding: '10px',
+          }}
+        >
+          <ComponentsPanel />
+        </div>
+      )}
     </div>
   );
 };
