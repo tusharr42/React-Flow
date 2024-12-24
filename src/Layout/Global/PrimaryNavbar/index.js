@@ -65,7 +65,7 @@ function Navbar() {
     alignItems: "center",
     backgroundColor: "#002855",
     color: "white",
-    padding: "10px 20px",
+    padding: "1px 20px",
     fontFamily: "Arial, sans-serif",
     boxSizing: "border-box",
   };
@@ -73,7 +73,6 @@ function Navbar() {
   const leftNavStyle = {
     display: "flex",
     alignItems: "center",
-    gap: "30px",
   };
 
   const navLinksStyle = {
@@ -129,9 +128,11 @@ function Navbar() {
     <nav style={navbarStyle} ref={dropdownRef}>
       {/* Left Side - Logo and Links */}
       <div style={leftNavStyle}>
-        <div style={{ fontSize: "26px", fontWeight: "bold", cursor: "pointer" }}>
+        <div
+          style={{ fontSize: "26px", fontWeight: "bold", cursor: "pointer" }}
+        >
           <img
-            src="/assets/removebg.png"
+            src="/assets/redcolor.png"
             alt="React Flow"
             style={{
               height: "60px",
@@ -162,7 +163,8 @@ function Navbar() {
                   <strong>Integration</strong>
                   <br />
                   <span style={{ fontSize: "15px", color: "#555" }}>
-                    Build processes that transform and integrate data between systems.
+                    Build processes that transform and integrate data between
+                    systems.
                   </span>
                 </div>
                 <div
@@ -178,7 +180,8 @@ function Navbar() {
                   <strong>DataHub</strong>
                   <br />
                   <span style={{ fontSize: "15px", color: "#555" }}>
-                    Synchronize, cleanse, match, and enrich trusted data across domains.
+                    Synchronize, cleanse, match, and enrich trusted data across
+                    domains.
                   </span>
                 </div>
                 <div
@@ -194,7 +197,8 @@ function Navbar() {
                   <strong>API Management</strong>
                   <br />
                   <span style={{ fontSize: "15px", color: "#555" }}>
-                    Manage and control the usage of APIs throughout their lifecycle.
+                    Manage and control the usage of APIs throughout their
+                    lifecycle.
                   </span>
                 </div>
                 <div
@@ -210,7 +214,8 @@ function Navbar() {
                   <strong>Flow</strong>
                   <br />
                   <span style={{ fontSize: "15px", color: "#555" }}>
-                    Automate sophisticated workflows to create customer journeys.
+                    Automate sophisticated workflows to create customer
+                    journeys.
                   </span>
                 </div>
                 <div
@@ -318,7 +323,8 @@ function Navbar() {
                   <strong>Community</strong>
                   <br />
                   <span style={{ fontSize: "15px", color: "#555" }}>
-                    Ask questions, share knowledge, and join groups with other users.
+                    Ask questions, share knowledge, and join groups with other
+                    users.
                   </span>
                 </div>
                 <div
@@ -334,7 +340,8 @@ function Navbar() {
                   <strong>Training</strong>
                   <br />
                   <span style={{ fontSize: "15px", color: "#555" }}>
-                    Develop core competencies as part of the Boomi certification path.
+                    Develop core competencies as part of the Boomi certification
+                    path.
                   </span>
                 </div>
               </div>
@@ -342,10 +349,7 @@ function Navbar() {
           </li>
 
           {/* Labs Dropdown */}
-          <li
-            style={navLinkItemStyle}
-            onClick={() => toggleDropdown("lab")}
-          >
+          <li style={navLinkItemStyle} onClick={() => toggleDropdown("lab")}>
             Labs ▾
             {labDropdownOpen && (
               <div style={dropdownStyle}>
@@ -410,7 +414,8 @@ function Navbar() {
                   <strong>Community</strong>
                   <br />
                   <span style={{ fontSize: "15px", color: "#555" }}>
-                    Ask questions, share knowledge, and join groups with other users.
+                    Ask questions, share knowledge, and join groups with other
+                    users.
                   </span>
                 </div>
                 <div
@@ -426,7 +431,8 @@ function Navbar() {
                   <strong>Training</strong>
                   <br />
                   <span style={{ fontSize: "15px", color: "#555" }}>
-                    Develop core competencies as part of the Boomi certification path.
+                    Develop core competencies as part of the Boomi certification
+                    path.
                   </span>
                 </div>
               </div>

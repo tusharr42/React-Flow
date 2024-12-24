@@ -58,6 +58,16 @@ function ResponsiveAppBar() {
               marginTop: "10px",
             }}
           />
+          <Typography
+            sx={{
+              position: "absolute",
+              right: "82%",
+              top: "25%",
+              fontSize: "101%",
+            }}
+          >
+            𝗥𝗲𝗮𝗰𝘁 𝗙𝗹𝗼𝘄
+          </Typography>
         </Typography>
 
         <Box sx={{ display: { xs: "none", sm: "block" } }}>
@@ -106,4 +116,3 @@ function ResponsiveAppBar() {
 }
 
 export default ResponsiveAppBar;
-

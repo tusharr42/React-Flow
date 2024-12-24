@@ -17,6 +17,20 @@ import { red } from "@mui/material/colors";
 export default function ProcessBox() {
   const [showTabs, setShowTabs] = useState(false);
   const [closeTabs, setCloseTabs] = useState(true);
+  const [name, setName] = useState(""); // State to store the value of TextField
+  const [isEditing, setIsEditing] = useState(false); // Manage editing state
+
+  const handleBlur = () => {
+    setIsEditing(false); // Save automatically when the field loses focus
+  };
+
+  const handleFocus = () => {
+    setIsEditing(true); // Switch to editing mode when the field is focused
+  };
+
+  const handleChange = (event) => {
+    setName(event.target.value); // Update the name as the user types
+  };
 
   const handleClick = () => {
     setShowTabs((prevState) => !prevState);
@@ -48,11 +62,25 @@ export default function ProcessBox() {
           }}
         >
           <SettingsSuggestIcon />
-          <TextField
-            id="outlined-size-small"
-            size="small"
-            sx={{ width: "400px" }}
-          />
+          {isEditing ? (
+            <TextField
+              id="outlined-size-small"
+              size="small"
+              sx={{ width: "400px", fontWeight: "bold" }}
+              value={name}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              onFocus={handleFocus}
+            />
+          ) : (
+            <Typography
+              variant="body1"
+              sx={{ fontWeight: "bold", cursor: "pointer", width: "400px" }}
+              onClick={() => setIsEditing(true)}
+            >
+              {name || "Enter name"}
+            </Typography>
+          )}
           <Typography variant="body1" sx={{ fontWeight: "normal" }}>
             Process
           </Typography>

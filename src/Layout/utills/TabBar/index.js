@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import {
   Card,
@@ -174,7 +173,7 @@ function TabBar() {
         marginBottom: 3,
         position: "absolute",
         top: "275px",
-        marginLeft: "75px",
+        marginLeft: "70px",
       }}
     >
       <CardContent>
