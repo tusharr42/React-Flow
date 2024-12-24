@@ -1,54 +1,15 @@
 import React from "react"; // React import
 import { useRouter } from "next/navigation"; // Import useRouter from next/router
 import {
-  AppBar,
-  Toolbar,
   Box,
   IconButton,
   Typography,
   Card,
   CardContent,
-  Divider,
 } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-
-function NavBar() {
-  return (
-    <AppBar
-      position="static"
-      sx={{
-        backgroundColor: "#ffffff",
-        boxShadow: "none",
-        borderBottom: "1px solid #ddd",
-      }}
-    >
-      <Toolbar
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          minHeight: "48px",
-        }}
-      >
-        
-        <Box>
-          <IconButton>
-            <HomeIcon sx={{ fontSize: "28px", color: "#002855" }} />
-          </IconButton>
-        </Box>
-
-        {/* Menu Icon */}
-        <Box>
-          <IconButton>
-            <MoreVertIcon sx={{ fontSize: "24px", color: "#555555" }} />
-          </IconButton>
-        </Box>
-      </Toolbar>
-    </AppBar>
-  );
-}
-
+import NavigationBar from "../Global/ToolBar"; // Import NavigationBar component
 
 function IntegrationPage() {
   const router = useRouter();  
@@ -59,8 +20,8 @@ function IntegrationPage() {
 
   return (
     <Box>
-      {/* Navigation Bar */}
-      <NavBar />
+      {/* Use NavigationBar instead of AppBar */}
+      <NavigationBar /> 
 
       {/* Main Content */}
       <Box sx={{ padding: "24px", maxWidth: "960px", margin: "auto" }}>

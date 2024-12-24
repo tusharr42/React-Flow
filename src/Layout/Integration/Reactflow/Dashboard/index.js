@@ -5,7 +5,7 @@ import SecondaryNavBar from "../../../Global/SecondaryNavbar";
 import Sidebar from "../../../Global/Sidebar";
 import Footer from "../../../Global/Footer";
 import ComponentsPanel from "../../../Global/ComponentsPannel"; // Corrected the import name
-import NavigationBar from "../NavigationBar";
+import NavigationBar from "../../../Global/ToolBar";
 import Flow from "../Flow";
 import ProcessBox from "@/Layout/utills/ProcessBar";
 import TabsPage from "@/Layout/utills";

@@ -4,11 +4,11 @@ import { IconButton, Tooltip, Typography } from '@mui/material';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import LayersIcon from '@mui/icons-material/Layers';
-import ComponentsPanel from '../ComponentsPannel'; // Ensure the path is correct
+import ComponentsPanel from '../ComponentsPannel'; // Make sure the path is correct
 
 const Sidebar = () => {
   const [isClose, setIsClose] = useState(true); // Sidebar starts closed
-  const [isComponentsPanelOpen, setIsComponentsPanelOpen] = useState(false); // Components panel starts closed
+  const [isComponentsPanelOpen, setIsComponentsPanelOpen] = useState(false); // Tracks visibility of the ComponentsPanel
 
   // On component mount, check local storage
   useEffect(() => {
@@ -25,16 +25,17 @@ const Sidebar = () => {
     localStorage.setItem('sidebarState', JSON.stringify(newState)); // Save state
   };
 
-  // Toggle components panel visibility
+  // Toggle the ComponentsPanel visibility
   const toggleComponentsPanel = () => {
-    setIsComponentsPanelOpen((prevState) => !prevState); // Toggle visibility
+    setIsComponentsPanelOpen(prevState => !prevState); // Toggle the visibility
   };
 
+  // Sidebar styles
   const sidebarStyle = {
     display: 'flex',
     flexDirection: 'column',
     backgroundColor: '#fff',
-    width: isClose ? '60px' : '220px', // Default closed
+    width: isClose ? '60px' : '220px',
     transition: 'width 0.3s ease',
     height: 'calc(100vh - 80px)',
     boxShadow: '2px 0 4px rgba(0, 0, 0, 0.1)',
@@ -131,13 +132,19 @@ const Sidebar = () => {
         </div>
       </div>
 
-      {/* Conditionally Render ComponentsPanel */}
+      {/* Conditionally render the ComponentsPanel */}
       {isComponentsPanelOpen && (
         <div
           style={{
+            position: 'fixed',
+            top: '146px', // Adjust based on your header height
+            left: isClose ? '60px' : '220px', // Sidebar width, adjust dynamically based on isClose state
             width: '290px',
-            border: '1px solid #ddd',
+            height: 'calc(100vh - 80px)',
+            backgroundColor: '#fff',
+            boxShadow: '2px 0 4px rgba(0, 0, 0, 0.1)',
             padding: '10px',
+            transition: 'left 0.3s ease', // Smooth transition when sidebar opens/closes
           }}
         >
           <ComponentsPanel />

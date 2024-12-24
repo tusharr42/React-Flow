@@ -1,44 +1,36 @@
 import React, { useState, useEffect } from "react";
-import SearchIcon from '@mui/icons-material/Search';
-import FilterListIcon from '@mui/icons-material/FilterList';
-import FolderIcon from '@mui/icons-material/Folder';
+import { getSession } from "next-auth/react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch, faFilter, faFolder, faFolderOpen } from '@fortawesome/free-solid-svg-icons';
 
 function ComponentsPanel() {
-  const [companyNames, setCompanyNames] = useState([]);
+  const [session, setSession] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [company, setCompany] = useState(null);
+  const [isFolderOpen, setIsFolderOpen] = useState(false);
 
   useEffect(() => {
-    // Fetch company names from the API
-    const fetchCompanyNames = async () => {
-      try {
-        const response = await fetch('/api/componentsbar');
-        if (!response.ok) {
-          const errorDetails = await response.text();
-          throw new Error(`Network response was not ok: ${response.status} - ${response.statusText}. Details: ${errorDetails}`);
-        }
-        const data = await response.json();
-        setCompanyNames([...new Set(data)]); // Ensure unique company names
-      } catch (error) {
-        console.error('Error fetching company names:', error);
-      } finally {
-        setLoading(false);
+    const fetchSession = async () => {
+      const sessionData = await getSession();
+      setSession(sessionData);
+
+      if (sessionData) {
+        setCompany(sessionData.user.companyName);
       }
+      setLoading(false);
     };
 
-    fetchCompanyNames();
+    fetchSession();
   }, []);
 
+  const toggleFolder = () => {
+    setIsFolderOpen(!isFolderOpen);
+  };
+
   return (
-    <div style={{ width: "290px", border: "1px solid #ddd", padding: "10px" }}>
-      {/* Container for Search Input and Filter Button */}
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          marginBottom: "10px",
-        }}
-      >
-        {/* Search Input Panel */}
+    <div style={{ width: "285px", border: "1px solid #ddd", padding: "10px" }}>
+      {/* Search Input and Filter Button */}
+      <div style={{ display: "flex", alignItems: "center", marginBottom: "10px" }}>
         <div
           style={{
             display: "flex",
@@ -46,23 +38,10 @@ function ComponentsPanel() {
             border: "1px solid #0078D4",
             borderRadius: "20px",
             padding: "4px 8px",
-            flex: 1, // Take remaining space
             boxShadow: "0 0 3px rgba(0, 0, 0, 0.2)",
           }}
         >
-          {/* Search Icon */}
-          <span
-            style={{
-              marginRight: "8px",
-              color: "#888",
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <SearchIcon />
-          </span>
-
-          {/* Input Field */}
+          <FontAwesomeIcon icon={faSearch} style={{ marginRight: "8px", color: "#888" }} />
           <input
             type="text"
             placeholder="Search component"
@@ -76,41 +55,52 @@ function ComponentsPanel() {
           />
         </div>
 
-        {/* Filter Button */}
         <span
           style={{
             marginLeft: "10px",
             color: "#0078D4",
             cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
             border: "1px solid #0078D4",
             borderRadius: "50%",
             padding: "8px",
             boxShadow: "0 0 3px rgba(0, 0, 0, 0.2)",
           }}
         >
-          <FilterListIcon />
+          <FontAwesomeIcon icon={faFilter} />
         </span>
       </div>
 
       {/* Folder Structure */}
       <div>
         {loading ? (
-          <p>Loading company names...</p>
+          <p>Loading company data...</p>
+        ) : company ? (
+          <div>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                fontSize: "20px",
+                marginBottom: "10px",
+                cursor: "pointer",
+              }}
+              onClick={toggleFolder}
+            >
+              <FontAwesomeIcon
+                icon={isFolderOpen ? faFolderOpen : faFolder}
+                style={{ marginRight: "8px", color: "#0078D4" }}
+              />
+              <span>{company}</span>
+            </div>
+            {isFolderOpen && (
+              <ul style={{ listStyleType: "none", paddingLeft: "20px" }}>
+                <li>Folder content 1</li>
+                <li>Folder content 2</li>
+              </ul>
+            )}
+          </div>
         ) : (
-          companyNames.length > 0 ? (
-            <ul>
-              {companyNames.map((company, index) => (
-                <li key={index} style={{ display: "flex", alignItems: "center", marginBottom: "5px", fontSize: "30px" }}>
-                  <FolderIcon style={{ marginRight: "8px", color: "#0078D4" }} />
-                  {company}
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>No company names found</p>
-          )
+          <p>No company data found</p>
         )}
       </div>
     </div>

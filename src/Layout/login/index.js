@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { signIn } from "next-auth/react";
+import { signIn, getSession } from "next-auth/react"; // Import getSession
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
@@ -35,10 +35,6 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-
-    const handleRedirect = () => {
-      router.push("/signup");
-    };
 
     const validationErrors = {};
 
@@ -81,6 +77,11 @@ const LoginPage = () => {
           });
 
           console.log("Login successful!");
+
+          // Retrieve and log the session
+          const session = await getSession();
+          console.log("Session:", session);
+
           setTimeout(() => {
             router.replace("/dashboard");
           }, 2000);
