@@ -4,6 +4,7 @@ import { signIn } from "next-auth/react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
+import { styled } from "@mui/system";
 
 import "./login.css";
 import { useState } from "react";
@@ -145,11 +146,7 @@ const LoginPage = () => {
 
           {/* Submit Button */}
           <button type="submit" className="sign-in-btn" disabled={loading}>
-            {loading ? (
-              <div className="spinner"></div> 
-            ) : (
-              "Sign In"
-            )}
+            {loading ? <div className="spinner"></div> : "Sign In"}
           </button>
         </form>
       </div>
