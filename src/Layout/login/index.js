@@ -24,10 +24,6 @@ const LoginPage = () => {
     router.push("/signup");
   };
 
-  const handleChanged = () => {
-    router.push("/"); // Navigate using router.push
-  };
-
   // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -103,12 +99,6 @@ const LoginPage = () => {
 
   return (
     <div className="container">
-      <img
-        src="/assets/removebg.png"
-        alt="React Flow"
-        style={{ height: "60px", marginBottom: "55%" }}
-        onClick={handleChanged}
-      ></img>
 
       <div className="login-section">
         <h2 className="title">Sign in to Account</h2>
