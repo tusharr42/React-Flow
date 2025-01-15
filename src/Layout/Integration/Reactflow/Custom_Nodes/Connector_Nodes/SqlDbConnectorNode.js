@@ -1,27 +1,21 @@
-import React, { useState, useEffect } from "react";
-import { Handle, Position, useReactFlow } from "@xyflow/react";
-import "../CustomNode.css";
+import React, { useState } from "react";
 import {
   Button,
+  Checkbox,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
+  FormControlLabel,
   TextField,
   Tooltip,
-  Checkbox,
-  FormControlLabel,
 } from "@mui/material";
+import { Handle, Position, useReactFlow } from "@xyflow/react";
 import Image from "next/image";
-import {
-  fetchAllData,
-} from "@/app/api/Actions/connectToMongo";
 
-const MongoDbConnectorNode = ({ data, id }) => {
-  // console.log("data", data);
-  const [connections, setConnections] = useState({});
+const SqlDbConnectorNode = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isMongoSRV, setIsMongoSRV] = useState(false);
+  const [isSqlSRV, setIsSqlSRV] = useState(false);
   const { setNodes } = useReactFlow();
   const [formData, setFormData] = useState({
     host: "",
@@ -48,7 +42,7 @@ const MongoDbConnectorNode = ({ data, id }) => {
   };
 
   const handleCheckboxChange = (e) => {
-    setIsMongoSRV(e.target.checked);
+    setIsSqlSRV(e.target.checked);
     if (!e.target.checked) {
       setFormData({ ...formData, connectionString: "" }); // Reset connection string when unchecked
     }
@@ -58,15 +52,15 @@ const MongoDbConnectorNode = ({ data, id }) => {
     try {
       let connectionString;
 
-      if (isMongoSRV) {
+      if (isSqlSRV) {
         if (!formData.connectionString) {
           setConnectionStatus("Connection string is required.");
           return;
         }
 
-        if (!formData.connectionString.startsWith("mongodb+srv://")) {
+        if (!formData.connectionString.startsWith("mysql://")) {
           setConnectionStatus(
-            "Invalid connection string. It must start with 'mongodb+srv://'."
+            "Invalid connection string. It must start with 'mysql://'."
           );
           return;
         }
@@ -82,12 +76,12 @@ const MongoDbConnectorNode = ({ data, id }) => {
 
         connectionString =
           username && password
-            ? `mongodb://${username}:${password}@${host}:${port}/${databaseName}`
-            : `mongodb://${host}:${port}/${databaseName}`;
+            ? `mysql://${username}:${password}@${host}:${port}/${databaseName}`
+            : `mysql://${host}:${port}/${databaseName}`;
 
-        if (!connectionString.startsWith("mongodb://")) {
+        if (!connectionString.startsWith("mysql://")) {
           setConnectionStatus(
-            "Invalid connection string. It must start with 'mongodb://'."
+            "Invalid connection string. It must start with 'mysql://'."
           );
           return;
         }
@@ -118,25 +112,25 @@ const MongoDbConnectorNode = ({ data, id }) => {
       );
     }
   };
-
   return (
     <>
       <div className="container">
         <Handle type="target" position={Position.Left} />
-        <Tooltip title="MongoDb Connector" placement="top">
+        <Tooltip title="SQL Connector" placement="top">
           <Image
-            src="/assets/mongodb1.png"
-            alt="MongoDB"
+            src="/assets/sql.png"
+            alt="SqlDb"
             width={50}
             height={50}
             onClick={openModal}
             style={{ cursor: "pointer" }}
             loading="eager"
+            quality={100}
           />
         </Tooltip>
 
         <Dialog open={isOpen} onClose={closeModal} fullWidth maxWidth="sm">
-          <DialogTitle>MongoDB Credentials</DialogTitle>
+          <DialogTitle>Sql Database Credentials</DialogTitle>
           <DialogContent>
             <TextField
               autoFocus
@@ -146,7 +140,7 @@ const MongoDbConnectorNode = ({ data, id }) => {
               value={formData.host}
               onChange={handleInputChange}
               fullWidth
-              disabled={isMongoSRV}
+              disabled={isSqlSRV}
             />
             <TextField
               margin="dense"
@@ -157,7 +151,7 @@ const MongoDbConnectorNode = ({ data, id }) => {
               fullWidth
               type="number"
               inputProps={{ min: 0, step: 0.5 }}
-              disabled={isMongoSRV}
+              disabled={isSqlSRV}
             />
             <TextField
               margin="dense"
@@ -166,7 +160,7 @@ const MongoDbConnectorNode = ({ data, id }) => {
               value={formData.databaseName}
               onChange={handleInputChange}
               fullWidth
-              disabled={isMongoSRV}
+              disabled={isSqlSRV}
             />
             <TextField
               margin="dense"
@@ -175,7 +169,7 @@ const MongoDbConnectorNode = ({ data, id }) => {
               value={formData.username}
               onChange={handleInputChange}
               fullWidth
-              disabled={isMongoSRV} // Disable when using SRV
+              disabled={isSqlSRV} // Disable when using SRV
             />
             <TextField
               margin="dense"
@@ -185,18 +179,18 @@ const MongoDbConnectorNode = ({ data, id }) => {
               value={formData.password}
               onChange={handleInputChange}
               fullWidth
-              disabled={isMongoSRV} // Disable when using SRV
+              disabled={isSqlSRV} // Disable when using SRV
             />
             <FormControlLabel
               control={
                 <Checkbox
-                  checked={isMongoSRV}
+                  checked={isSqlSRV}
                   onChange={handleCheckboxChange}
                 />
               }
-              label="Mongo+SRV"
+              label="Sql Url"
             />
-            {isMongoSRV && (
+            {isSqlSRV && (
               <TextField
                 margin="dense"
                 label="Connection String"
@@ -228,8 +222,8 @@ const MongoDbConnectorNode = ({ data, id }) => {
               onClick={handleSubmit}
               variant="contained"
               disabled={
-                (isMongoSRV && !formData.connectionString) || // For SRV, check connection string
-                (!isMongoSRV &&
+                (isSqlSRV && !formData.connectionString) || // For SRV, check connection string
+                (!isSqlSRV &&
                   (!formData.host ||
                     // !formData.port ||
                     // !formData.databaseName ||
@@ -244,9 +238,9 @@ const MongoDbConnectorNode = ({ data, id }) => {
 
         <Handle type="source" position={Position.Right} />
       </div>
-      <div className="node-label">MongoDB</div>
+      <div className="node-label">SQL DB</div>
     </>
   );
 };
 
-export default MongoDbConnectorNode;
+export default SqlDbConnectorNode;

@@ -10,9 +10,7 @@ import Button from "@mui/material/Button";
 import RoundaboutRightIcon from "@mui/icons-material/RoundaboutRight";
 import EqualizerIcon from "@mui/icons-material/Equalizer";
 import AppsIcon from "@mui/icons-material/Apps";
-import AddRoadIcon from "@mui/icons-material/AddRoad";
-import TabBar from "../tabBar/index";
-import { red } from "@mui/material/colors";
+import TabBar from "@/Layout/utills/TabBar/index.js";
 
 export default function ProcessBox() {
   const [showTabs, setShowTabs] = useState(false);
@@ -45,7 +43,7 @@ export default function ProcessBox() {
           alignItems: "center",
           padding: 2,
           position: "fixed",
-          top: "200px",
+          top: "150px",
           width: "-webkit-fill-available",
         }}
       >
@@ -59,6 +57,7 @@ export default function ProcessBox() {
             justifyContent: "space-between",
             height: "43px",
             background: "white",
+            width: "5rem"
           }}
         >
           <SettingsSuggestIcon />
@@ -66,7 +65,14 @@ export default function ProcessBox() {
             <TextField
               id="outlined-size-small"
               size="small"
-              sx={{ width: "400px", fontWeight: "bold" }}
+              sx={{
+                width: "400px",
+                fontWeight: "bold",
+                "& .MuiInputBase-root": {
+                  height: "18px", // Set the height of the input field
+                },
+              }}
+              height={8}
               value={name}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -100,6 +106,7 @@ export default function ProcessBox() {
             background: "white",
             marginLeft: "21px",
             marginRight: "15px",
+            height: "43px",
           }}
         >
           <LocalDrinkIcon />
@@ -113,17 +120,31 @@ export default function ProcessBox() {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
+            height: "43px",
           }}
         >
           <Stack spacing={1} direction="row">
             <Button
-              sx={{ marginRight: 2, padding: 1, background: "white" }}
+              sx={{
+                marginRight: 2,
+                padding: 1,
+                background: "white",
+                maxHeight: "43px",
+                borderColor: "#002855",
+                color: "#002855",
+              }}
               variant="outlined"
             >
               Save & Close
             </Button>
             <Button
-              sx={{ marginRight: 2, padding: 1, width: "120px" }}
+              sx={{
+                marginRight: 2,
+                padding: 1,
+                width: "80px",
+                maxHeight: "43px",
+                background: "#002855",
+              }}
               variant="contained"
             >
               Save
@@ -150,7 +171,7 @@ export default function ProcessBox() {
             gap: 2,
             width: "8%", // You can adjust the width as needed
             position: "absolute",
-            top: "263px",
+            top: "213px",
           }}
         >
           {/* Add clickable icons with rounded borders */}
@@ -158,10 +179,13 @@ export default function ProcessBox() {
             sx={{
               borderRadius: "50%",
               padding: "10px",
+              backgroundColor: "#002855",
+              color: "#f4f4f4",
               border: "1px solid #ccc",
               transition: "all 0.3s ease",
               "&:hover": {
-                backgroundColor: "#f0f0f0",
+                backgroundColor: "#002855",
+                color: "#f4f4f4",
               },
             }}
             onClick={handleClick}
@@ -173,10 +197,12 @@ export default function ProcessBox() {
             sx={{
               borderRadius: "50%",
               padding: "10px",
+              backgroundColor: "#f4f4f4",
               border: "1px solid #ccc",
               transition: "all 0.3s ease",
               "&:hover": {
-                backgroundColor: "#f0f0f0",
+                border: "1px solid #002855",
+                color: "#002855",
               },
             }}
           >
@@ -187,10 +213,12 @@ export default function ProcessBox() {
             sx={{
               borderRadius: "50%",
               padding: "10px",
+              backgroundColor: "#f4f4f4",
               border: "1px solid #ccc",
               transition: "all 0.3s ease",
               "&:hover": {
-                backgroundColor: "#f0f0f0",
+                border: "1px solid #002855",
+                color: "#002855",
               },
             }}
           >
@@ -201,10 +229,12 @@ export default function ProcessBox() {
             sx={{
               borderRadius: "50%",
               padding: "10px",
+              backgroundColor: "#f4f4f4",
               border: "1px solid #ccc",
               transition: "all 0.3s ease",
               "&:hover": {
-                backgroundColor: "#f0f0f0",
+                border: "1px solid #002855",
+                color: "#002855",
               },
             }}
           >

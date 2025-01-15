@@ -8,11 +8,21 @@ import {
   useReactFlow,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
-import MongoDbconnectorNode from "../Custom_Nodes/Connector_Nodes/MongoDbconnectorNode";
+import MongoDbConnectorNode from "../Custom_Nodes/Connector_Nodes/MongoDbconnectorNode";
+import TryCatchNode from "../Custom_Nodes/Logic_Nodes/TryCatchNode/TryCatchNode";
+import TryTargetNode from "../Custom_Nodes/Logic_Nodes/TryCatchNode/TryTargetNode";
+import CatchTargetNode from "../Custom_Nodes/Logic_Nodes/TryCatchNode/CatchTargetNode";
+import StartNode from "../Custom_Nodes/Logic_Nodes/StartNode";
+import { FlowProvider } from "@/context/FlowContext";
+import SqlDbConnectorNode from "../Custom_Nodes/Connector_Nodes/SqlDbConnectorNode";
 
 const nodeTypes = {
-  MongoDbConnectorNode: MongoDbconnectorNode,
-  // SQLConnectorNode: SQLConnectorNode,
+  MongoDbConnectorNode: MongoDbConnectorNode,
+  TryCatchNode: TryCatchNode,
+  TryTargetNode: TryTargetNode,
+  CatchTargetNode: CatchTargetNode,
+  StartNode: StartNode,
+  SqlDbConnectorNode: SqlDbConnectorNode,
   // AppwriteConnectorNode: AppwriteConnectorNode,
 };
 
@@ -62,7 +72,61 @@ const Flow = () => {
         },
       };
 
-      setNodes((nds) => nds.concat(newNode));
+      if (type === "TryCatchNode") {
+        // Add TryCatchNode with predefined edges
+        const tryTargetId = getId();
+        const catchTargetId = getId();
+
+        const TryTargetNode = {
+          id: tryTargetId,
+          type: "TryTargetNode",
+          position: { x: position.x + 250, y: position.y - 40 },
+          data: {
+            id: tryTargetId,
+            label: "Try",
+          },
+          sourcePosition: "right",
+          targetPosition: "left",
+        };
+
+        const CatchTargetNode = {
+          id: catchTargetId,
+          type: "CatchTargetNode",
+          position: { x: position.x + 250, y: position.y + 40 },
+          data: {
+            id: catchTargetId,
+            label: "Catch",
+          },
+          sourcePosition: "right",
+          targetPosition: "left",
+        };
+
+        const newEdges = [
+          {
+            id: `edge-${newNodeId}-try`,
+            source: newNodeId,
+            sourceHandle: "try",
+            target: tryTargetId,
+            type: "smoothstep",
+            // animated: true,
+          },
+          {
+            id: `edge-${newNodeId}-catch`,
+            source: newNodeId,
+            sourceHandle: "catch",
+            target: catchTargetId,
+            type: "smoothstep",
+            // animated: true,
+          },
+        ];
+
+        // Update nodes and edges state
+        setNodes((nds) => nds.concat(newNode, TryTargetNode, CatchTargetNode));
+        setEdges((eds) => eds.concat(newEdges));
+      } else {
+        // For other nodes, add normally
+        setNodes((nds) => nds.concat(newNode));
+      }
     },
     [screenToFlowPosition]
   );
@@ -73,21 +137,22 @@ const Flow = () => {
   };
 
   return (
-    <div style={{ height: "100%" }}>
-      <ReactFlow
-        nodes={nodes}
-        edges={edges}
-        onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange}
-        onConnect={onConnect}
-        onDrop={onDrop}
-        onDragOver={onDragOver}
-        nodeTypes={nodeTypes}
-        fitView
-      >
-        <Background />
-      </ReactFlow>
-    </div>
+    <FlowProvider>
+      <div style={{ height: "100%" }}>
+        <ReactFlow
+          nodes={nodes}
+          edges={edges}
+          onNodesChange={onNodesChange}
+          onEdgesChange={onEdgesChange}
+          onConnect={onConnect}
+          onDrop={onDrop}
+          onDragOver={onDragOver}
+          nodeTypes={nodeTypes}
+        >
+          <Background />
+        </ReactFlow>
+      </div>
+    </FlowProvider>
   );
 };
 

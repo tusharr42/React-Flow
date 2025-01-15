@@ -11,6 +11,7 @@ import {
   ListItemText,
   ListItemIcon,
 } from "@mui/material";
+import Image from "next/image";
 
 function TabBar() {
   const [tabValue, setTabValue] = useState(0);
@@ -40,10 +41,16 @@ function TabBar() {
       onDragStart={(event) => onDragStart(event, nodeType)}
       draggable
     >
-      <ListItemIcon sx={{ minWidth: 30, display: "flex", alignItems: "center" }}>
-        <img
+      <ListItemIcon
+        sx={{ minWidth: 30, display: "flex", alignItems: "center" }}
+      >
+        <Image
           src={`/assets/${label.toLowerCase().replace(" ", "")}.png`}
-          style={{ width: "25px", height: "auto", marginRight: "8px" }}
+          width={25}
+          height={25}
+          alt="TabBar Node Images"
+          layout="intrinsic"
+          style={{  marginRight: "8px" }}
         />
       </ListItemIcon>
       <ListItemText primary={label} />
@@ -53,7 +60,7 @@ function TabBar() {
   const tabContent = [
     [
       { label: "MongoDb", nodeType: "MongoDbConnectorNode" },
-      { label: "SQL", nodeType: "SQLConnectorNode" },
+      { label: "SQL", nodeType: "SqlDbConnectorNode" },
       { label: "Appwrite", nodeType: "AppwriteConnectorNode" },
     ],
     [
@@ -78,7 +85,7 @@ function TabBar() {
         boxShadow: 1,
         marginBottom: 3,
         position: "absolute",
-        top: "275px",
+        top: "225px",
         marginLeft: "70px",
       }}
     >
@@ -108,7 +115,11 @@ function TabBar() {
         >
           <List>
             {tabContent[tabValue].map((item, index) => (
-              <TabItem key={index} label={item.label} nodeType={item.nodeType} />
+              <TabItem
+                key={index}
+                label={item.label}
+                nodeType={item.nodeType}
+              />
             ))}
           </List>
         </Box>

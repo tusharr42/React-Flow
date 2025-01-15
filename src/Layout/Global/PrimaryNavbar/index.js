@@ -5,6 +5,7 @@ import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import LogoutIcon from "@mui/icons-material/Logout";
+import Image from "next/image";
 
 function Navbar() {
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
@@ -116,6 +117,7 @@ function Navbar() {
     fontWeight: "500",
     transition: "color 0.3s",
     position: "relative",
+    zIndex: 101,
   };
 
   const rightNavStyle = {
@@ -131,15 +133,18 @@ function Navbar() {
         <div
           style={{ fontSize: "26px", fontWeight: "bold", cursor: "pointer" }}
         >
-          <img
+          {/* <Image
             src="/assets/redcolor.png"
             alt="React Flow"
+            width={35} 
+            height={35} 
             style={{
-              height: "60px",
               objectFit: "contain",
-              marginTop: "10px",
+              marginRight: "50px",
             }}
-          />
+          /> */}
+
+          <h3 style={{ marginRight: "50px" }}>Reactflow</h3>
         </div>
         <ul style={navLinksStyle}>
           {/* Services Dropdown */}
@@ -532,6 +537,7 @@ function Navbar() {
             textTransform: "none",
             fontSize: "12px",
             padding: "5px 10px",
+            margin: "10px 0px"
           }}
           onClick={handleSignOut}
         >

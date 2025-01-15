@@ -28,7 +28,7 @@ function NavBar() {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          minHeight: "48px",
+          minHeight: "44px",
         }}
       >
         

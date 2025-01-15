@@ -114,7 +114,7 @@ const Sidebar = () => {
       {/* Open/Close Sidebar */}
       <div style={closeButtonStyle} onClick={toggleSidebar}>
         <Tooltip title={isClose ? 'Expand' : 'Collapse'} placement="right">
-          <IconButton>
+          <IconButton style={{width: '35px', height: '35px', marginRight: isClose ? "0px" : "15px", marginLeft: isClose ? "0px" : "5px" }}>
             {/* Dynamically show double-chevron text */}
             <Typography style={chevronStyle}>
               {isClose ? '»' : '«'}
