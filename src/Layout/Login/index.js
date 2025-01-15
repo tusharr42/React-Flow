@@ -99,13 +99,33 @@ const LoginPage = () => {
 
   return (
     <div className="container">
+
       <div className="login-section">
         <h2 className="title">Sign in to Account</h2>
         <div className="social-icons">
-          <button className="social-btn">f</button>
-          <button className="social-btn">in</button>
-          <button className="social-btn">G</button>
+          <a
+            href="https://www.facebook.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <button className="social-btn">f</button>
+          </a>
+          <a
+            href="https://www.linkedin.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <button className="social-btn">in</button>
+          </a>
+          <a
+            href="mailto:example@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <button className="social-btn">G</button>
+          </a>
         </div>
+
         <p className="text">or use your email account</p>
         <form className="form" onSubmit={handleSubmit}>
           {/* Email Input */}
